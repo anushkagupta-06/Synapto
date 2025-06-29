@@ -4,8 +4,8 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
-import Summary from "./pages/Summary";
 import Attendance from "./pages/Attendance";
+import Summary from "./pages/Summary";
 
 function App() {
   return (
@@ -26,12 +26,17 @@ function App() {
         <Route
           path="/attendance"
           element={
+          <PrivateRoute>
+            <Attendance />
+          </PrivateRoute>
+        }
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
             <PrivateRoute>
               <Attendance />
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/signup" />} />
       </Routes>
     
   );
