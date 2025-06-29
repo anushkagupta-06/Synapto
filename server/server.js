@@ -7,6 +7,7 @@ import pdfRoutes from './routes/pdfRoutes.js';
 import attendanceRoutes from "./routes/attendanceRoutes.js";
 
 dotenv.config();
+
 connectDB();
 
 const app = express();
@@ -24,9 +25,12 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use("/api/attendance", attendanceRoutes);
 
+app.use('/api/pdf', pdfRoutes);
+
+app.use('/api/attendance', attendanceRoutes);
+
 app.get("/", (req, res) => {
   res.send("EduHub API is running 🚀");
 });
-
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -4,6 +4,7 @@ import generateToken from "../utils/generateToken.js";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
+
 export const googleLogin = async (req, res) => {
   const { credential } = req.body;
 
@@ -21,15 +22,23 @@ export const googleLogin = async (req, res) => {
       user = await User.create({
         name,
         email,
-        google: true 
+        google: true ,
       });
     }
 
+
+
     const token = generateToken(user._id);
 
-    res.status(200).json({ token, name: user.name, email: user.email });
+    res.status(200).json({ 
+      token,id:user._id,
+       name: user.name,
+        email: user.email
+     });
   } catch (err) {
     console.error("Google Auth Error:", err);
     res.status(400).json({ message: "Google Authentication Failed" });
   }
 };
+
+
