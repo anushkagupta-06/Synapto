@@ -12,12 +12,19 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@simplewebauthn/server": "^13.1.1",
+    "base64url": "^3.0.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "google-auth-library": "^10.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.16.0"
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.1",
+    "node-fetch": "^3.3.2",
+    "pdf-parse": "^1.0.1",
+    "start": "^5.1.0"
   }
 }

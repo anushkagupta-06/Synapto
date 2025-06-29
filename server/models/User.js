@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
     type: Boolean, 
     default: false 
   },
+ passkey: {
+
+ type: mongoose.Schema.Types.Mixed, // <-- Accepts any type
+},
+ challenge:{
+  type:String
+ }
+
 }, { timestamps: true });
 
 // Password hashing middleware

@@ -1,11 +1,12 @@
 import fs from "fs";
-import pdfParse from "pdf-parse";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
 dotenv.config();
 
 export const Summary = async (req, res) => {
   try {
+    const { default: pdfParse } = await import("pdf-parse"); // ✅ dynamic import
+
     console.log("Received file:", req.file);
     if (!req.file || !req.file.path) {
       return res.status(400).json({ error: "No file uploaded." });
@@ -18,12 +19,10 @@ export const Summary = async (req, res) => {
     const response = await fetch("https://api-inference.huggingface.co/models/t5-small", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+        Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        inputs: `summarize: ${text}`,
-      }),
+      body: JSON.stringify({ inputs: `summarize: ${text}` }),
     });
 
     const result = await response.json();

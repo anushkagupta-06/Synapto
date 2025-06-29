@@ -20,6 +20,9 @@ export const registerUser = async (req, res) => {
     name,
     email,
     password,
+    google: false,
+    passkey: null,
+    challenge: null,
   });
 
   if (user) {
@@ -33,6 +36,8 @@ export const registerUser = async (req, res) => {
     res.status(400).json({ message: 'Invalid user data' });
   }
 };
+
+
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;

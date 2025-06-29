@@ -2,13 +2,17 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
+import Summary from "./pages/Summary";
 import Attendance from "./pages/Attendance";
 
 function App() {
   return (
-    <Router>
+    
       <Routes>
+        <Route path="/summary" element={<Summary />} />
+        <Route path="/passkey" element={<PasskeySetup />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route
@@ -22,14 +26,14 @@ function App() {
         <Route
           path="/attendance"
           element={
-          <PrivateRoute>
-            <Attendance />
-          </PrivateRoute>
-        }
+            <PrivateRoute>
+              <Attendance />
+            </PrivateRoute>
+          }
         />
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/signup" />} />
       </Routes>
-    </Router>
+    
   );
 }
 
