@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import Attendance from "./pages/Attendance";
+import Summary from "./pages/Summary";
 
 function App() {
   return (
