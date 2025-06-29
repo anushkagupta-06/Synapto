@@ -3,3 +3,5 @@
 /server/node_modules
 .env
 .DS_Store
+/server/summary
+/server/test
