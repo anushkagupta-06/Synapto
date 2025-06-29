@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
 import Summary from "./pages/Summary";
+import SubjectFileManager from  "./pages/Sub-Files"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/passkey" element={<PasskeySetup />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/subject-file-manager" element={<SubjectFileManager />} />
         <Route
           path="/dashboard"
           element={
