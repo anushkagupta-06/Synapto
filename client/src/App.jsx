@@ -3,6 +3,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import Attendance from "./pages/Attendance";
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
               <Dashboard />
             </PrivateRoute>
           }
+        />
+        <Route
+          path="/attendance"
+          element={
+          <PrivateRoute>
+            <Attendance />
+          </PrivateRoute>
+        }
         />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
