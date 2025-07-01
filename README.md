@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/AI-Powered-Yes-blueviolet" alt="AI-Powered Badge"/>
+ 
   <img src="https://img.shields.io/badge/Platform-Web%20+%20Mobile-green" alt="Platform Badge"/>
   <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License Badge"/>
 </p>
