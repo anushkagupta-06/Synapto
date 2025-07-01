@@ -106,7 +106,7 @@ This project is licensed under the **MIT License** — feel free to use and modi
 
 ## 🤝 Team
 
-Made with ❤️ by [Your Name or Team Name]
+Made with ❤️ by Team Synapto
 
 ---
 
