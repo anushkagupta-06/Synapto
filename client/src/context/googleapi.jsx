@@ -1,30 +1,79 @@
 import { createContext, useCallback, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
 
+
+
 const Googlecontext = createContext();
 export const GoogleProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [summary, setSummary] = useState("");
+  const[summaryTitle, setSummaryTitle] = useState("");
+  const [summaryLoading, setSummaryLoading] = useState(false);
 
-  const uploadPDF = useCallback(async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
+  const[quizloading, setQuizLoading] = useState(false);
+  const[quizData,setQuizData]=useState([]);
 
-    const res = await axios.post("http://localhost:5050/api/pdf/summary", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+  const SummaryGenerator = useCallback(async (fileId) => {
+    
+    setSummaryLoading(true);
+   
+    try {
+      if(!fileId) {
+        console.error("File ID is required to generate summary");
+        return; 
+      }
 
-    setSummary(res.data.summary);
+       navigate("/summary");
+      const res = await axios.post(
+        "http://localhost:5050/api/pdf/summary",
+        {fileId}
+      );
+      setSummary(res.data.summary);
+      console.log("Summary generated:", res.data.summary);
+      setSummaryTitle(res.data.title);
+      
+    } catch (error) {
+      console.error("Error generating summary:", error);
+      // Optionally, set an error state here
+    } finally {
+      setSummaryLoading(false);
+    }
   }, []);
+
+
+const quizGenerator = useCallback(async (fileId) => {
+  setQuizLoading(true);
+  
+  try {
+    if (!fileId) {
+      console.error("File ID is required to generate quiz");
+      return;
+    }
+    navigate("/quiz");
+    const res = await axios.post("http://localhost:5050/api/pdf/quiz", { fileId });
+    const { quiz } = res.data;
+    setQuizData(quiz);
+  } catch (error) {
+    console.error("Error generating quiz:", error);
+    // Optionally, set an error state here
+  } finally {
+    setQuizLoading(false);
+  }
+}, []);
+
 
   return (
     <Googlecontext.Provider
       value={{
-        uploadPDF,
+        quizGenerator,
+        quizData,
+        quizloading,
+        SummaryGenerator,
         summary,
+        summaryLoading,
+        summaryTitle, // Added summaryTitle to the context
       }}
     >
       {children}

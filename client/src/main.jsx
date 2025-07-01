@@ -6,6 +6,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './context/contextapi.jsx';
 import { GoogleProvider } from './context/googleapi.jsx'; // Ensure this import is correct
 import { BrowserRouter } from 'react-router-dom';
+import { FileProvider } from './context/Filecontext.jsx';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,10 +18,13 @@ root.render(
       <BrowserRouter>
         <AuthProvider>
           <GoogleProvider>
+            <FileProvider>
           <App />
+          </FileProvider>
           </GoogleProvider>
         </AuthProvider>
       </BrowserRouter>
     </GoogleOAuthProvider>
   </React.StrictMode>
 );
+
