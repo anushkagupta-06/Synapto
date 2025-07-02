@@ -5,16 +5,23 @@ import Dashboard from "./pages/Dashboard";
 import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
 import Attendance from "./pages/Attendance";
-import Summary from "./pages/Summary";
 import ChatBot from "./pages/ChatBot";
+import SubjectFileManager from "./pages/Sub-Files.jsx";
+import SummaryPage from "./pages/SummaryPage.jsx";
+import Quiz from  "./pages/Quiz.jsx"
+
+
 
 function App() {
   return (
     <Routes>
-      <Route path="/summary" element={<Summary />} />
+       <Route path="/quiz" element={<Quiz />} />
+      <Route path="/summary" element={<SummaryPage />} />
+    
       <Route path="/passkey" element={<PasskeySetup />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+ <Route path="/subject-file-manager" element={<SubjectFileManager />} />
       <Route
         path="/dashboard"
         element={
