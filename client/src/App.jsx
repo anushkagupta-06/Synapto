@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
 import Attendance from "./pages/Attendance";
+import ChatBot from "./pages/ChatBot";
 import SubjectFileManager from "./pages/Sub-Files.jsx";
 import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
-
 
 
 
@@ -27,7 +27,7 @@ function App() {
         element={
           <PrivateRoute>
             <Dashboard />
-           </PrivateRoute>
+          </PrivateRoute>
         }
       />
       <Route
@@ -38,6 +38,15 @@ function App() {
           </PrivateRoute>
         }
       />
+      <Route
+        path="/chat"
+        element={
+        <PrivateRoute>
+        <ChatBot />
+        </PrivateRoute>
+        }
+      />
+
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
