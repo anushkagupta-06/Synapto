@@ -9,7 +9,7 @@ import ChatBot from "./pages/ChatBot";
 import SubjectFileManager from "./pages/Sub-Files.jsx";
 import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
-
+import WhatsAppAlertSender from "./pages/whatsappAlert.jsx"
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     <Routes>
        <Route path="/quiz" element={<Quiz />} />
       <Route path="/summary" element={<SummaryPage />} />
-    
+      <Route path="/wtsp-alert" element={< WhatsAppAlertSender/>} />
       <Route path="/passkey" element={<PasskeySetup />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />

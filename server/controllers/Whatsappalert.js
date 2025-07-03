@@ -1,6 +1,9 @@
 // controllers/whatsappController.js
-import twilio from 'twilio';
 import User from '../models/User.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import twilio from 'twilio';
 
 const client = twilio(
   process.env.TWILIO_ACCOUNT_SID,
@@ -8,24 +11,24 @@ const client = twilio(
 );
 
 export const sendWhatsAppAlerts = async (req, res) => {
-  const { message, userIds } = req.body;
+  const { message } = req.body;
 
   try {
-    const users = await User.find({ _id: { $in: userIds } });
+    // const users = await User.find({ _id: { $in: userIds } });
 
-    for (const user of users) {
-      if (user.phoneNumber) {
+    // for (const user of users) {
+    //   if (user.phoneNumber) {
         await client.messages.create({
-          body: message,
-          from: process.env.TWILIO_WHATSAPP_NUMBER,
-          to: `whatsapp:${user.phoneNumber}`
+          from: 'whatsapp:+14155238886',
+          to: `whatsapp:+918368431686`,
+          body: message
         });
-      }
-    }
+    //   }
+    // }
 
-    res.status(200).json({ success: true, message: 'Messages sent successfully' });
+    res.status(200).json({ success: true, message: 'Custom messages sent!' });
   } catch (error) {
-    console.error(error);
+    console.error('WhatsApp send error:', error);
     res.status(500).json({ success: false, error: error.message });
   }
 };

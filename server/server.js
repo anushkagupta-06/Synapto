@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import pdfRoutes from './routes/pdfRoutes.js';
 import attendanceRoutes from "./routes/attendanceRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import twilioRoutes from "./routes/twilioRoutes.js"
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use('/api/pdf', pdfRoutes);
 app.use('/api/attendance', attendanceRoutes);
 
 app.use("/api/chat", chatRoutes);
+app.use("/api/alert",twilioRoutes);
 
 app.get("/", (req, res) => {
   res.send("EduHub API is running 🚀");
