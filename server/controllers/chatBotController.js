@@ -1,6 +1,8 @@
 import ChatBot from "../models/ChatBot.js";
 import openRouter from "../utils/openrouter.js";
 
+
+
 // Send message and get smart GPT-based reply
 export const getBotResponse = async (req, res) => {
   try {

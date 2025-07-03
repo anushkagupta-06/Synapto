@@ -1,7 +1,9 @@
+
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Spline from "@splinetool/react-spline";
-import { Bot } from "lucide-react"; // Bot icon
+import { Bot } from "lucide-react"; // Bot iconnpm
+
 
 const ChatBot = () => {
   const navigate = useNavigate();
