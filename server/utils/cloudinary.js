@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 import dotenv from "dotenv";
-
 dotenv.config();
 
 cloudinary.config({
@@ -9,4 +9,21 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET,
 });
 
-export default cloudinary;
+const chatStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "chat_uploads",
+    allowed_formats: ["jpg", "png", "jpeg", "gif"],
+  },
+});
+
+const profileStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "profile-images",
+    allowed_formats: ["jpeg", "jpg", "png", "webp"],
+    transformation: [{ width: 500, height: 500, crop: "limit" }],
+  },
+});
+
+export { cloudinary, chatStorage, profileStorage };

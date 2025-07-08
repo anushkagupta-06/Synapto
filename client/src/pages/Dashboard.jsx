@@ -17,6 +17,13 @@ const Dashboard = () => {
         </button>
 
         <br />
+        <button
+          onClick={() => navigate("/chat")}
+          className="mb-4 bg-yellow-600 hover:bg-yellow-700 px-5 py-2 rounded-lg text-white font-medium transition"
+        >
+          Go to Chat
+        </button>
+        <br />
 
         <button
           onClick={() => {

@@ -25,7 +25,12 @@ const userSchema = new mongoose.Schema({
 },
  challenge:{
   type:String
- }
+ },
+ profileImage: {
+  type: String,
+  default: "", 
+},
+bio: { type: String, default: "" }
 
 }, { timestamps: true });
 

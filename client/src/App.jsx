@@ -9,44 +9,24 @@ import ChatBot from "./pages/ChatBot";
 import SubjectFileManager from "./pages/Sub-Files.jsx";
 import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
-
+import ChatPage from "./pages/ChatPage";
 
 
 function App() {
   return (
     <Routes>
-       <Route path="/quiz" element={<Quiz />} />
-      <Route path="/summary" element={<SummaryPage />} />
-    
-      <Route path="/passkey" element={<PasskeySetup />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
- <Route path="/subject-file-manager" element={<SubjectFileManager />} />
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/attendance"
-        element={
-          <PrivateRoute>
-            <Attendance />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/chat"
-        element={
-        <PrivateRoute>
-        <ChatBot />
-        </PrivateRoute>
-        }
-      />
-
+      <Route element={<PrivateRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/attendance" element={<Attendance />} />
+        <Route path="/chatbot" element={<ChatBot />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/summary" element={<SummaryPage />} />
+        <Route path="/passkey" element={<PasskeySetup />} />
+        <Route path="/subject-file-manager" element={<SubjectFileManager />} />
+      </Route>
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
