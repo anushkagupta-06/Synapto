@@ -1,5 +1,5 @@
 import File from "../models/File.js";
-import cloudinary from "../utils/cloudinary.js";
+import {cloudinary} from "../utils/cloudinary.js";
 import extractText from "../utils/extractText.js";
 
 export const uploadFile = async (req, res) => {
