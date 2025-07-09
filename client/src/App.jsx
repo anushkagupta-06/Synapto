@@ -10,7 +10,7 @@ import SubjectFileManager from "./pages/Sub-Files.jsx";
 import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
 import ChatPage from "./pages/ChatPage";
-
+import Notes from './pages/Notes';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
         <Route path="/summary" element={<SummaryPage />} />
         <Route path="/passkey" element={<PasskeySetup />} />
         <Route path="/subject-file-manager" element={<SubjectFileManager />} />
+        <Route path="/notes" element={<Notes />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
