@@ -5,8 +5,6 @@ import Message from '../models/Message.js';
 export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({ _id: { $ne: req.user.id } }).select('name _id profileImage bio email createdAt');
-    console.log("Fetched users (excluding current):", users);
-
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch users' });
