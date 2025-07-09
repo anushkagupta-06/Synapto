@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import HomePage from "./pages/HomePage";
 import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
 import Attendance from "./pages/Attendance";
@@ -10,11 +10,13 @@ import SubjectFileManager from "./pages/Sub-Files.jsx";
 import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
 import WhatsAppAlertSender from "./pages/whatsappAlert.jsx"
+import AIZonePage from "./pages/AIZonePage.jsx";
 
 
 function App() {
   return (
     <Routes>
+      <Route path="/AIZonePage" element={<AIZonePage/>} />
        <Route path="/quiz" element={<Quiz />} />
       <Route path="/summary" element={<SummaryPage />} />
       <Route path="/wtsp-alert" element={< WhatsAppAlertSender/>} />
@@ -26,7 +28,7 @@ function App() {
         path="/dashboard"
         element={
           <PrivateRoute>
-            <Dashboard />
+            <HomePage/>
           </PrivateRoute>
         }
       />
@@ -47,7 +49,7 @@ function App() {
         }
       />
 
-      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
 }
