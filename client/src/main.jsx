@@ -8,6 +8,7 @@ import { GoogleProvider } from "./context/googleapi.jsx"; // Ensure this import 
 import { BrowserRouter } from "react-router-dom";
 import { FileProvider } from "./context/Filecontext.jsx";
 import { TwilioProvider } from "./context/twilio.jsx";
+import { MassBunkProvider } from "./context/MassBunkContext.jsx"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -19,7 +20,9 @@ root.render(
           <GoogleProvider>
             <FileProvider>
               <TwilioProvider>
+                <MassBunkProvider>
                 <App />
+                </MassBunkProvider>
               </TwilioProvider>
             </FileProvider>
           </GoogleProvider>

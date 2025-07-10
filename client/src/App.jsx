@@ -11,11 +11,15 @@ import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
 import WhatsAppAlertSender from "./pages/whatsappAlert.jsx"
 import AIZonePage from "./pages/AIZonePage.jsx";
+import MassBunkPage from "./pages/MassBunk.jsx";
+
+
 
 
 function App() {
   return (
     <Routes>
+       <Route path="/mass-bunk" element={<MassBunkPage/>} />
       <Route path="/AIZonePage" element={<AIZonePage/>} />
        <Route path="/quiz" element={<Quiz />} />
       <Route path="/summary" element={<SummaryPage />} />

@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
 },
  challenge:{
   type:String
- }
+ },
+  isAdmin: { type: Boolean, default: false },
 
 }, { timestamps: true });
 
