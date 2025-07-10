@@ -15,7 +15,7 @@ const Professors = () => {
     <div className="p-6 bg-[#000] text-white min-h-screen">
       <h1 className="text-4xl font-bold mb-6 text-center">📚 ECE Professors</h1>
 
-      {/* 🔍 Search Bar */}
+      {/* Search Bar */}
       <div className="mb-6 flex justify-center">
         <input
           type="text"
@@ -26,7 +26,7 @@ const Professors = () => {
         />
       </div>
 
-      {/* 👨‍🏫 Professors Grid */}
+      {/* Professors Grid */}
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto max-h-[75vh] pr-2">
         {filteredProfessors.length > 0 ? (
           filteredProfessors.map((prof, index) => (
