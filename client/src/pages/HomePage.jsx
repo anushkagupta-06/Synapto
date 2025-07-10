@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomePage.css';
 import Spline from '@splinetool/react-spline';
 import { useAuth } from '../context/contextapi';
-import { Car, Bot, CalendarCheck2, Users, Upload, UserCircle, BellRing, HandMetal } from 'lucide-react';
+import { Car, Bot, CalendarCheck2, Users, Upload, UserCircle, BellRing, HandMetal,ShieldAlert } from 'lucide-react';
 
 const generateStars = (count = 100) => {
   const stars = [];
@@ -64,10 +64,12 @@ const HomePage = () => {
           <Link to="/profile" className="nav-link"><UserCircle size={16} style={{ marginRight: '6px' }} />Profile</Link>
           <Link to="/wtsp-alert" className="nav-link"><BellRing size={16} style={{ marginRight: '6px' }} />Alert Centre</Link>
           <Link to="/mass-bunk" className="nav-link"><HandMetal size={16} style={{ marginRight: '6px' }} />Mass Bunk</Link>
+          <Link to="/imposter" className="nav-link"><ShieldAlert size={16} style={{ marginRight: '6px' }} />Imposter List</Link>
+
           {!localuser &&
             <Link to="/login" className="nav-link"><HandMetal size={16} style={{ marginRight: '6px' }} />Login</Link>
           }
-          
+
           {localuser &&
           <p className="nav-link"
            onClick={logout} ><HandMetal size={16} style={{ marginRight: '6px' }} />Logout</p>

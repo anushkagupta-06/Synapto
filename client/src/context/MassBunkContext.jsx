@@ -39,8 +39,14 @@ export const MassBunkProvider = ({ children }) => {
     await fetchPolls();
   };
 
+
+    const markImposter = async (pollId, userId, localuser) => {
+    await axios.post(`http://localhost:5050/api/massbunk/mark-imposter`, { pollId, userId, localuser });
+    await fetchPolls();
+  };
+
   return (
-    <MassBunkContext.Provider value={{ polls, activePoll, history, createPoll, votePoll, closePoll }}>
+    <MassBunkContext.Provider value={{ polls, activePoll, history, createPoll, votePoll, closePoll,markImposter }}>
       {children}
     </MassBunkContext.Provider>
   );

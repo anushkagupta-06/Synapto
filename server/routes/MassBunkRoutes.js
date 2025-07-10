@@ -7,18 +7,25 @@ import User from '../models/User.js';
 const router = express.Router();
 
 router.get('/polls', async (req, res) => {
-  const polls = await MassBunkPoll.find();
+  try {
+    const polls = await MassBunkPoll.find()
+      .populate('votes.userId', 'name')
+      .populate('createdBy', 'name')
+      .populate('imposters', 'name');
 
-  // Manually populate names
-  for (const poll of polls) {
-    for (const vote of poll.votes) {
-      const user = await User.findById(vote.userId).select('name');
-      vote.userId = user || { name: 'Unknown' };
-    }
+    // Optional: Remove votes with missing users
+    const cleanPolls = polls.map(p => ({
+      ...p.toObject(),
+      votes: p.votes.filter(v => v.userId), // remove undefined users
+    }));
+
+    res.json(cleanPolls);
+  } catch (err) {
+    console.error('Polls fetch error:', err);
+    res.status(500).send('Internal Server Error');
   }
-
-  res.json(polls);
 });
+
 router.post('/create', async (req, res) => {
   const { reason, localuser } = req.body;
 
@@ -59,6 +66,17 @@ router.post('/close', async (req, res) => {
 
   poll.status = 'closed';
   await poll.save();
+  res.sendStatus(200);
+});
+router.post('/mark-imposter', async (req, res) => {
+  const { pollId, userId, localuser } = req.body;
+  const poll = await MassBunkPoll.findById(pollId);
+  if (poll.createdBy.toString() !== localuser?.id.toString()) return res.status(403).send('Unauthorized');
+
+  if (!poll.imposters.includes(userId)) {
+    poll.imposters.push(userId);
+    await poll.save();
+  }
   res.sendStatus(200);
 });
 

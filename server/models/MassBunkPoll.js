@@ -10,6 +10,7 @@ const massBunkPollSchema = new mongoose.Schema({
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   status: { type: String, enum: ['open', 'closed'], default: 'open' },
   votes: [voteSchema],
+  imposters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   createdAt: { type: Date, default: Date.now }
 });
 
