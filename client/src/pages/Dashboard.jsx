@@ -33,7 +33,7 @@ const Dashboard = () => {
         <br />
         <button
           onClick={() => navigate("/professors")}
-          className="mb-4 bg-white-600 hover:bg-yellow-700 px-5 py-2 rounded-lg text-black font-medium transition"
+          className="mb-4 bg-orange-600 hover:bg-yellow-700 px-5 py-2 rounded-lg text-black font-medium transition"
         >
           Proff List
         </button>

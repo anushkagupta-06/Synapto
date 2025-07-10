@@ -12,6 +12,10 @@ import Quiz from  "./pages/Quiz.jsx"
 import ChatPage from "./pages/ChatPage";
 import Notes from './pages/Notes';
 import Professors from './pages/Professors';
+import ForgotPassword from './pages/ForgotPassword';
+import VerifyOTP from './pages/VerifyOTP';
+import ResetPassword from './pages/ResetPassword';
+
 
 function App() {
   return (
@@ -29,6 +33,9 @@ function App() {
         <Route path="/subject-file-manager" element={<SubjectFileManager />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/professors" element={<Professors />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>

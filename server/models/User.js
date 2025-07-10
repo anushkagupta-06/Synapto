@@ -30,8 +30,9 @@ const userSchema = new mongoose.Schema({
   type: String,
   default: "", 
 },
-bio: { type: String, default: "" }
-
+bio: { type: String, default: "" },
+resetPasswordOTP: String,
+resetPasswordExpires: Date,
 }, { timestamps: true });
 
 // Password hashing middleware
