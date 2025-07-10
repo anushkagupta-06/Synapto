@@ -11,6 +11,7 @@ import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
 import ChatPage from "./pages/ChatPage";
 import Notes from './pages/Notes';
+import Professors from './pages/Professors';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/passkey" element={<PasskeySetup />} />
         <Route path="/subject-file-manager" element={<SubjectFileManager />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/professors" element={<Professors />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
