@@ -57,24 +57,24 @@ const HomePage = () => {
       <div className="navbar-content">
         <div className="navbar-title">SYNAPTO</div>
         <div className="navbar-links">
-          <Link to="/AIZonePage" className="nav-link"><Bot size={16} style={{ marginRight: '6px' }} />AI Zone</Link>
-          <Link to="/attendance" className="nav-link"><CalendarCheck2 size={16} style={{ marginRight: '6px' }} />Attendance Tracker</Link>
-          <Link to="/community" className="nav-link"><Users size={16} style={{ marginRight: '6px' }} />Community</Link>
-          <Link to="/subject-file-manager" className="nav-link"><Upload size={16} style={{ marginRight: '6px' }} />File Upload</Link>
-          <Link to="/profile" className="nav-link"><UserCircle size={16} style={{ marginRight: '6px' }} />Profile</Link>
-          <Link to="/wtsp-alert" className="nav-link"><BellRing size={16} style={{ marginRight: '6px' }} />Alert Centre</Link>
-          <Link to="/mass-bunk" className="nav-link"><HandMetal size={16} style={{ marginRight: '6px' }} />Mass Bunk</Link>
-          <Link to="/imposter" className="nav-link"><ShieldAlert size={16} style={{ marginRight: '6px' }} />Imposter List</Link>
-
-          {!localuser &&
+          {localuser ? (
+            <>
+              <Link to="/AIZonePage" className="nav-link"><Bot size={16} style={{ marginRight: '6px' }} />AI Zone</Link>
+              <Link to="/attendance" className="nav-link"><CalendarCheck2 size={16} style={{ marginRight: '6px' }} />Attendance Tracker</Link>
+              <Link to="/community" className="nav-link"><Users size={16} style={{ marginRight: '6px' }} />Community</Link>
+              {localuser?.isAdmin && <Link to="/wtsp-alert" className="nav-link"><BellRing size={16} style={{ marginRight: '6px' }} />Alert Centre</Link>}
+              
+              <Link to="/subject-file-manager" className="nav-link"><Upload size={16} style={{ marginRight: '6px' }} />File Upload</Link>
+             
+             
+              
+              <Link to="/bunk" className="nav-link"><ShieldAlert size={16} style={{ marginRight: '6px' }} />Bunk</Link>
+               <Link to="/profile" className="nav-link"><UserCircle size={16} style={{ marginRight: '6px' }} />Profile</Link>
+              <p className="nav-link" onClick={logout}><HandMetal size={16} style={{ marginRight: '6px' }} />Logout</p>
+            </>
+          ) : (
             <Link to="/login" className="nav-link"><HandMetal size={16} style={{ marginRight: '6px' }} />Login</Link>
-          }
-
-          {localuser &&
-          <p className="nav-link"
-           onClick={logout} ><HandMetal size={16} style={{ marginRight: '6px' }} />Logout</p>
-          }
-           
+          )}
         </div>
       </div>
     </nav>
@@ -99,17 +99,22 @@ const HomePage = () => {
         </div>
       )}
 
-      {phase === 'home' && (
-        <div className="home-scroll-wrapper">
-          <div className="starfield-background">{generateStars(120)}</div>
-          <Navbar />
-          <main className="main">
-            <div className="spline-wrapper no-stars">
-              <Spline scene="https://prod.spline.design/yW1kHDXFLLzj5mAz/scene.splinecode" />
-            </div>
-          </main>
-        </div>
-      )}
+ {phase === 'home' && (
+  <div className="homepage-root">
+    {/* Stars on entire background */}
+    <div className="simple-stars">{generateStars(120)}</div>
+
+    {/* Navbar */}
+    <Navbar />
+
+    {/* Spline Section (no stars inside) */}
+    <div className="simple-spline-section">
+      <Spline scene="https://prod.spline.design/yW1kHDXFLLzj5mAz/scene.splinecode" />
+    </div>
+  </div>
+)}
+
+
     </>
   );
 };

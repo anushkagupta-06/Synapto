@@ -13,6 +13,7 @@ import WhatsAppAlertSender from "./pages/whatsappAlert.jsx"
 import AIZonePage from "./pages/AIZonePage.jsx";
 import MassBunkPage from "./pages/MassBunk.jsx";
 import ImposterPage from "./pages/Imposter.jsx";
+import Bunk from "./pages/Bunk.jsx"
 
 
 
@@ -21,6 +22,7 @@ import ImposterPage from "./pages/Imposter.jsx";
 function App() {
   return (
     <Routes>
+       <Route path="/bunk" element={<Bunk/>} />
        <Route path="/imposter" element={<ImposterPage/>} />
        <Route path="/mass-bunk" element={<MassBunkPage/>} />
       <Route path="/AIZonePage" element={<AIZonePage/>} />

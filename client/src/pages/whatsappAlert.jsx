@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import './whatsappAlert.css';
 import { usetwilio } from '../context/twilio';
+import { useAuth } from '../context/contextapi';
 
 const WhatsAppAlertSender = () => {
   const{handleSend,alertloading,response}=usetwilio();
-
+  const{localuser}=useAuth();
   const [message, setMessage] = useState('');
   
   
