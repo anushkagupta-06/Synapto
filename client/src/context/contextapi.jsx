@@ -43,9 +43,6 @@ const handleSubmitRegister = useCallback(async (e,formData) => {
 }, []);
 
 
-
-
-
 const handleSubmitLogin = useCallback(async (e, formData) => {
     e.preventDefault();
     try {
@@ -56,6 +53,7 @@ const handleSubmitLogin = useCallback(async (e, formData) => {
       console.log("Login Success:", res.data);
       localStorage.setItem("synapto", JSON.stringify(res.data));
         setLocalUser(res.data);
+        alert("hello",res.data);
 
      const response = await axios.post("http://localhost:5050/api/auth/passkey-login", { userId: res.data.id, userName: res.data.name });
 
@@ -131,6 +129,18 @@ const handleGoogleSuccessLogin = useCallback(async (credentialResponse) => {
     }
 }, [navigate]);
 
+const logout = useCallback(() => {
+  localStorage.removeItem("synapto");
+  localStorage.removeItem("synapto_token");
+  setLocalUser(null);
+  navigate("/dashboard");
+}, [navigate]);
+
+
+
+
+
+
 //setting the passkey after registring(first time user)....
   const setPasskey = useCallback(async () => {
     try {
@@ -175,6 +185,8 @@ const handleGoogleSuccessLogin = useCallback(async (credentialResponse) => {
         handleGoogleSuccessRegister,
         handleGoogleSuccessLogin,
         handleSubmitLogin,
+        localuser,
+        logout
       }}
     >
       {children}

@@ -1,16 +1,17 @@
-
 import { useGoogle } from "../context/googleapi.jsx";
-
 import "./SummaryPage.css";
+import {Link} from "react-router-dom";
+
 
 export default function SummaryPage() {
-    const {summary,summaryLoading,summaryTitle} = useGoogle();
-    const fileTitle = "Sample PDF"; // Replace with actual file title or state
+  const { summary, summaryLoading, summaryTitle } = useGoogle();
+
   return (
-    <div className="summary-wrapper">
+    <div className="summary-wrapper"> 
       <div className="summary-header">
         <h2>📄 {summaryTitle} Summary</h2>
-        <button className="back-btn">⬅ Back</button>
+        <Link to="/subject-file-manager"><button className="back-btn">⬅ Back</button></Link>
+        
       </div>
       <div className="summary-content">
         {summaryLoading ? (

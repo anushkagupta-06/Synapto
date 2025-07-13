@@ -6,7 +6,8 @@ export const uploadFile = async (req, res) => {
   try {
     const { title, subject } = req.body;
 
-     try {
+    // Ping test (optional)
+    try {
       const pingResult = await cloudinary.api.ping();
       console.log("Cloudinary ping successful:", pingResult);
     } catch (pingError) {
@@ -15,17 +16,25 @@ export const uploadFile = async (req, res) => {
 
     console.log("File received:", req.file.originalname, "Size:", req.file.size);
 
-    // Upload buffer to Cloudinary
+    // Fixed Cloudinary upload - removed format parameter and used auto resource_type
     const uploaded = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
-          resource_type: "raw",
+          resource_type: "auto", // Changed from "raw" to "auto"
           folder: "study_files",
-          format: "pdf",
+          // Removed format: "pdf" - let Cloudinary auto-detect
+          public_id: `${Date.now()}-${req.file.originalname.replace(/\.[^/.]+$/, "")}`, // Optional: custom public_id
+          use_filename: true,
+          unique_filename: true,
         },
         (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
+          if (error) {
+            console.error("Cloudinary upload error:", error);
+            reject(error);
+          } else {
+            console.log("Cloudinary upload result:", result);
+            resolve(result);
+          }
         }
       ).end(req.file.buffer);
     });
@@ -42,6 +51,7 @@ export const uploadFile = async (req, res) => {
       subject,
       fileUrl: uploaded.secure_url,
       textContent: text,
+      publicId: uploaded.public_id, // Store public_id for future operations
     });
 
     res.status(201).json(saved);
@@ -54,8 +64,15 @@ export const uploadFile = async (req, res) => {
   }
 };
 
-
 export const getFiles = async (req, res) => {
-  const files = await File.find({ subject: req.query.subject });
-  res.json(files);
+  try {
+    const files = await File.find({ subject: req.query.subject });
+    res.json(files);
+  } catch (err) {
+    console.error("Get files error:", err);
+    res.status(500).json({ 
+      message: "Failed to retrieve files.", 
+      error: err.message 
+    });
+  }
 };

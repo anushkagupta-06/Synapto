@@ -10,6 +10,7 @@ export default function SubjectFileManager() {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [newFileTitles, setNewFileTitles] = useState({});
   const [file, setFile] = useState(null);
+  console.log("file",file)
 
   useEffect(() => {
     if (selectedSubject) {
