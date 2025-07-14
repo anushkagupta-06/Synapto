@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   },
   password: { 
     type: String, 
-    required: false // changed from conditional
+    required: false 
   },
   google: { 
     type: Boolean, 
@@ -21,11 +21,12 @@ const userSchema = new mongoose.Schema({
   },
  passkey: {
 
- type: mongoose.Schema.Types.Mixed, // <-- Accepts any type
+ type: mongoose.Schema.Types.Mixed, 
 },
  challenge:{
   type:String
  },
+
  profileImage: {
   type: String,
   default: "", 
@@ -33,11 +34,15 @@ const userSchema = new mongoose.Schema({
 bio: { type: String, default: "" },
 resetPasswordOTP: String,
 resetPasswordExpires: Date,
+
+  isAdmin: { type: Boolean, default: false },
+
+
 }, { timestamps: true });
 
 // Password hashing middleware
-userSchema.pre('save', async function (next) {              //middleware function that runs before saving
-  if (!this.isModified('password') || !this.password) {           // returns true if password field is being created or changed
+userSchema.pre('save', async function (next) {           
+  if (!this.isModified('password') || !this.password) {          
     next();
   }
   try {

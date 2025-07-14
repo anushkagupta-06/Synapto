@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import HomePage from "./pages/HomePage";
 import PasskeySetup from "./pages/Passkey";
 import PrivateRoute from "./components/PrivateRoute";
 import Attendance from "./pages/Attendance";
@@ -15,15 +15,26 @@ import Professors from './pages/Professors';
 import ForgotPassword from './pages/ForgotPassword';
 import VerifyOTP from './pages/VerifyOTP';
 import ResetPassword from './pages/ResetPassword';
+import WhatsAppAlertSender from "./pages/whatsappAlert.jsx"
+import AIZonePage from "./pages/AIZonePage.jsx";
+import MassBunkPage from "./pages/MassBunk.jsx";
+import ImposterPage from "./pages/Imposter.jsx";
+import Bunk from "./pages/Bunk.jsx"
 
 
 function App() {
   return (
     <Routes>
+ <Route path="/dashboard" element={<HomePage/>} />
+      <Route path="/bunk" element={<Bunk/>} />
+       <Route path="/imposter" element={<ImposterPage/>} />
+       <Route path="/mass-bunk" element={<MassBunkPage/>} />
+      <Route path="/AIZonePage" element={<AIZonePage/>} />
+  <Route path="/wtsp-alert" element={< WhatsAppAlertSender/>} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/chatbot" element={<ChatBot />} />
         <Route path="/chat" element={<ChatPage />} />
@@ -37,7 +48,7 @@ function App() {
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Route>
-      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
 }
