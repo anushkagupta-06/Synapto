@@ -20,11 +20,11 @@ import AIZonePage from "./pages/AIZonePage.jsx";
 import MassBunkPage from "./pages/MassBunk.jsx";
 import ImposterPage from "./pages/Imposter.jsx";
 import Bunk from "./pages/Bunk.jsx"
-
-
+import DeadlineManager from './pages/Deadline.jsx';
 function App() {
   return (
     <Routes>
+       <Route path="/deadline" element={<DeadlineManager/>} />
  <Route path="/dashboard" element={<HomePage/>} />
       <Route path="/bunk" element={<Bunk/>} />
        <Route path="/imposter" element={<ImposterPage/>} />
