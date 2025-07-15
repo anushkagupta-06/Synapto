@@ -36,7 +36,7 @@ resetPasswordOTP: String,
 resetPasswordExpires: Date,
 
   isAdmin: { type: Boolean, default: false },
-  phoneNumber: { type: String }, // ✅ Added to support WhatsApp alerts
+  phoneNumber: { type: String }, 
 
 
 }, { timestamps: true });
