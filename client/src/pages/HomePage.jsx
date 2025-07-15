@@ -5,6 +5,9 @@ import Spline from '@splinetool/react-spline';
 import { useAuth } from '../context/contextapi';
 import { Car, Bot, CalendarCheck2, Users, Upload, UserCircle, BellRing, HandMetal,ShieldAlert } from 'lucide-react';
 
+
+
+
 const generateStars = (count = 100) => {
   const stars = [];
   for (let i = 0; i < count; i++) {
@@ -59,6 +62,8 @@ const HomePage = () => {
         <div className="navbar-links">
           {localuser ? (
             <>
+            <Link to="/deadline" className="nav-link"><Bot size={16} style={{ marginRight: '6px' }} />Deadline</Link>
+             <Link to="/notes" className="nav-link"><Bot size={16} style={{ marginRight: '6px' }} />notes</Link>
               <Link to="/AIZonePage" className="nav-link"><Bot size={16} style={{ marginRight: '6px' }} />AI Zone</Link>
               <Link to="/attendance" className="nav-link"><CalendarCheck2 size={16} style={{ marginRight: '6px' }} />Attendance Tracker</Link>
               <Link to="/chat" className="nav-link"><Users size={16} style={{ marginRight: '6px' }} />Community</Link>
