@@ -11,6 +11,16 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET,
 });
 
+
+const FileStorage=new CloudinaryStorage({
+
+  cloudinary,
+  params:{
+    folder:"file_uploads",
+    allowed_formats:["jpg", "png", "jpeg", "gif","pdf"],
+  },
+})
+
 const chatStorage = new CloudinaryStorage({
   cloudinary,
   params: {
@@ -28,4 +38,4 @@ const profileStorage = new CloudinaryStorage({
   },
 });
 
-export { cloudinary, chatStorage, profileStorage };
+export { cloudinary, chatStorage, profileStorage,FileStorage };
