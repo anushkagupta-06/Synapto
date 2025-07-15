@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { FileProvider } from "./context/Filecontext.jsx";
 import { TwilioProvider } from "./context/twilio.jsx";
 import { MassBunkProvider } from "./context/MassBunkContext.jsx"
+import {DeadlineProvider} from  "./context/DeadlineContext.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -21,7 +22,10 @@ root.render(
             <FileProvider>
               <TwilioProvider>
                 <MassBunkProvider>
+                  <DeadlineProvider>
+                  
                 <App />
+                </DeadlineProvider>
                 </MassBunkProvider>
               </TwilioProvider>
             </FileProvider>
