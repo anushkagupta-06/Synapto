@@ -11,7 +11,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
-  const token = JSON.parse(localStorage.getItem("synapto"))?.token;
+  const token = localStorage.getItem("synapto_token");
 
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState(null);
@@ -43,7 +43,7 @@ export default function ChatPage() {
 
     socket.on("connect", async () => {
       try {
-        const meRes = await axios.get("http://localhost:5050/api/chat/me", {
+        const meRes = await axios.get("http://localhost:5050/api/user/me", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCurrentUser(meRes.data);
@@ -450,7 +450,7 @@ export default function ChatPage() {
           {selectedUser ? (
             <>
               {messages.map((msg, index) => {
-                const senderId = typeof msg.sender === "object" ? msg.sender._id : msg.sender;
+                const senderId = msg.sender && msg.sender === "object" ? msg.sender._id : msg.sender;
                 const senderObj = typeof msg.sender === "object"
                   ? msg.sender
                   : senderId === currentUser?._id
@@ -648,7 +648,11 @@ export default function ChatPage() {
             <h2 className="text-xl font-semibold">{hoveredUser.name}</h2>
             <p className="text-gray-400 text-center">{hoveredUser.bio || "No bio available."}</p>
             <p className="text-sm text-gray-500">Email: {hoveredUser.email || "N/A"}</p>
-            <p className="text-sm text-gray-500">Joined: {new Date(hoveredUser.createdAt).toLocaleDateString()}</p>
+            <p className="text-sm text-gray-500">
+            {hoveredUser.createdAt
+              ? `Joined: ${new Date(hoveredUser.createdAt).toLocaleDateString()}`
+                : "Join date unknown"}
+            </p>
           </div>
         </div>
         </div>

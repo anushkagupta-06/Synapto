@@ -3,8 +3,8 @@ import Note from '../models/Note.js';
 // Create note
 export const createNote = async (req, res) => {
   try {
-    const { title, content } = req.body;
-    const note = new Note({ title, content, user: req.user._id });
+    const { title, content, color } = req.body;
+    const note = new Note({ title, content, color, user: req.user._id });
     await note.save();
     res.status(201).json(note);
   } catch (err) {
@@ -17,7 +17,7 @@ export const getUserNotes = async (req, res) => {
   try {
     const notes = await Note.find({ user: req.user._id }).sort({ updatedAt: -1 });
     res.json(notes);
-  } catch (err) {
+  } catch (err) { 
     res.status(500).json({ error: 'Failed to fetch notes' });
   }
 };

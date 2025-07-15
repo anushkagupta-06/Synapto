@@ -53,7 +53,6 @@ app.use("/api/user", userSettingsRoutes);
 
 app.use('/api/notes', noteRoutes);
 
-app.use("/api/chat", chatRoutes);
 app.use("/api/alert",twilioRoutes);
 app.use("/api/massbunk",MassBunkRoutes)
 

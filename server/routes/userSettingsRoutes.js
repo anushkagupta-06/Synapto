@@ -5,6 +5,10 @@ import protect from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
+router.get("/me", protect, (req, res) => {
+    res.json(req.user);
+  });
+
 router.patch("/profile-image", protect, upload.single("image"), updateProfileImage);
 router.patch("/update-details", protect, updateDetails);
 

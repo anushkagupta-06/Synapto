@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomePage.css';
 import Spline from '@splinetool/react-spline';
 import { useAuth } from '../context/contextapi';
-import { Car, Bot, CalendarCheck2, Users, Upload, UserCircle, BellRing, HandMetal,ShieldAlert } from 'lucide-react';
+import { Car, Bot, CalendarCheck2, Users, Upload, UserCircle, BellRing, HandMetal,ShieldAlert,GraduationCap, StickyNote, UsersRound } from 'lucide-react';
 
 const generateStars = (count = 100) => {
   const stars = [];
@@ -62,6 +62,9 @@ const HomePage = () => {
               <Link to="/AIZonePage" className="nav-link"><Bot size={16} style={{ marginRight: '6px' }} />AI Zone</Link>
               <Link to="/attendance" className="nav-link"><CalendarCheck2 size={16} style={{ marginRight: '6px' }} />Attendance Tracker</Link>
               <Link to="/chat" className="nav-link"><Users size={16} style={{ marginRight: '6px' }} />Community</Link>
+              <Link to="/professors" className="nav-link"><GraduationCap size={16} style={{ marginRight: '6px' }} />Professors</Link>
+              <Link to="/notes" className="nav-link"><StickyNote size={16} style={{ marginRight: '6px' }} />Sticky Notes</Link>
+              {/* <Link to="/notes-collab" className="nav-link"><UsersRound size={16} style={{ marginRight: '6px' }} />Notes Collab</Link> */}
               {localuser?.isAdmin && <Link to="/wtsp-alert" className="nav-link"><BellRing size={16} style={{ marginRight: '6px' }} />Alert Centre</Link>}
               
               <Link to="/subject-file-manager" className="nav-link"><Upload size={16} style={{ marginRight: '6px' }} />File Upload</Link>

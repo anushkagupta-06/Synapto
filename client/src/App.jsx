@@ -10,6 +10,7 @@ import SubjectFileManager from "./pages/Sub-Files.jsx";
 import SummaryPage from "./pages/SummaryPage.jsx";
 import Quiz from  "./pages/Quiz.jsx"
 import ChatPage from "./pages/ChatPage";
+import Settings from './pages/ChatSettings'; 
 import Notes from './pages/Notes';
 import Professors from './pages/Professors';
 import ForgotPassword from './pages/ForgotPassword';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/chatbot" element={<ChatBot />} />
         <Route path="/chat" element={<ChatPage />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/summary" element={<SummaryPage />} />
         <Route path="/passkey" element={<PasskeySetup />} />

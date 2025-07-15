@@ -8,9 +8,9 @@ const pastelColors = [
   'bg-yellow-300',
   'bg-green-300',
   'bg-blue-200',
-  'bg-red-200',
+  'bg-red-400',
   'bg-orange-200',
-  'bg-cyan-200',
+  'bg-cyan-200', 
 ];
 
 const Notes = () => {
@@ -18,8 +18,7 @@ const Notes = () => {
   const [form, setForm] = useState({ title: '', content: '', color: pastelColors[0], _id: null });
   const [loading, setLoading] = useState(false);
 
-  const userData = JSON.parse(localStorage.getItem("synapto"));
-  const token = userData?.token;
+  const token = localStorage.getItem("synapto_token");
 
   const fetchNotes = async () => {
     try {
@@ -89,7 +88,7 @@ const Notes = () => {
 
   return (
     <div className="h-screen flex flex-col bg-black text-white">
-      {/* 🔹 Fixed Header */}
+      {/* Fixed Header */}
       <div className="sticky top-0 z-10 bg-black p-6 shadow-md">
         <div className="text-center">
           <h2 className="text-4xl font-bold mb-1">📝 My Notes</h2>
@@ -97,53 +96,53 @@ const Notes = () => {
         </div>
       </div>
 
-      {/* 🔹 Scrollable Content (Form + Notes) */}
+      {/* Scrollable Content (Form + Notes) */}
       <div className="flex-1 overflow-y-auto px-6 pb-6 space-y-10">
         {/* Form */}
         <form
-          onSubmit={handleSave}
-          className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow space-y-4"
-        >
-          <input
-            type="text"
-            placeholder="Note Title"
-            className="w-full p-3 rounded bg-white text-black placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
-            value={form.title}
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
-            required
-          />
-          <textarea
-            placeholder="Write your note..."
-            rows={4}
-            className="w-full p-3 rounded bg-white text-black placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
-            value={form.content}
-            onChange={(e) => setForm({ ...form, content: e.target.value })}
-            required
-          ></textarea>
+  onSubmit={handleSave}
+  className="max-w-3xl mx-auto bg-gradient-to-br from-[#1e1e1e] via-[#121212] to-[#1e1e1e] p-6 rounded-2xl shadow-2xl space-y-4 border border-gray-700"
+>
+  <input
+    type="text"
+    placeholder="Note Title"
+    className="w-full p-3 rounded bg-[#2a2a2a] text-white placeholder:text-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    value={form.title}
+    onChange={(e) => setForm({ ...form, title: e.target.value })}
+    required
+  />
+  <textarea
+    placeholder="Write your note..."
+    rows={4}
+    className="w-full p-3 rounded bg-[#2a2a2a] text-white placeholder:text-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    value={form.content}
+    onChange={(e) => setForm({ ...form, content: e.target.value })}
+    required
+  ></textarea>
 
-          <div className="flex items-center gap-4">
-            <label className="text-sm text-black">Pick color:</label>
-            <select
-              value={form.color}
-              onChange={(e) => setForm({ ...form, color: e.target.value })}
-              className="rounded p-2 text-black bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
-            >
-              {pastelColors.map((color, idx) => (
-                <option key={idx} value={color}>
-                  {color.replace('bg-', '')}
-                </option>
-              ))}
-            </select>
+  <div className="flex items-center gap-4">
+    <label className="text-sm text-gray-300">Pick color:</label>
+    <select
+      value={form.color}
+      onChange={(e) => setForm({ ...form, color: e.target.value })}
+      className="rounded p-2 text-white bg-[#2a2a2a] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    >
+      {pastelColors.map((color, idx) => (
+        <option key={idx} value={color}>
+          {color.replace('bg-', '')}
+        </option>
+      ))}
+    </select>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="ml-auto bg-yellow-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
-            >
-              {form._id ? 'Update Note' : 'Add Note'}
-            </button>
-          </div>
-        </form>
+    <button
+      type="submit"
+      disabled={loading}
+      className="ml-auto bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded text-white transition duration-200"
+    >
+      {form._id ? 'Update Note' : 'Add Note'}
+    </button>
+  </div>
+</form>
 
         {/* Notes Display */}
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
