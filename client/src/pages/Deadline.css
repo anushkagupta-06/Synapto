@@ -1,0 +1,38 @@
+.deadline-container {
+  padding: 1rem;
+  background-color: #1b1f3a;
+  color: white;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.deadline-container input,
+.deadline-container textarea {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: none;
+}
+
+.deadline-container button {
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  background-color: #6f4cf4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.deadline-card {
+  background: #282c4d;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.deadline-card.done {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
