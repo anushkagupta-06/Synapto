@@ -20,14 +20,14 @@ export default function SubjectFileManager() {
 
   
 
-  const handleGenerateQuiz = (fileName) => {
-    alert(`Generating quiz for ${fileName}`);
-  };
+  // const handleGenerateQuiz = (fileName) => {
+  //   alert(`Generating quiz for ${fileName}`);
+  // };
 
   const handleAddFile = async (subjectName) => {
     const newFileTitle = newFileTitles[subjectName] || "";
     if (!file) return alert("Please choose a file.");
-    // if (!newFileTitle.endsWith(".pdf")) return alert("Only PDF files allowed.");
+   
 
     try {
       await uploadFile({
@@ -109,7 +109,7 @@ export default function SubjectFileManager() {
                   <div className="file-name">
                     📄{" "}
                     <a
-                      href={file.fileUrl}
+                      href={"https://drive.google.com/drive/u/3/home"}
                       target="_blank"
                       rel="noopener noreferrer"
                     
