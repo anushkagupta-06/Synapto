@@ -74,6 +74,8 @@ export const uploadImage = (req, res) => {
   res.json({ url: req.file.path }); // file.path is the Cloudinary secure URL
 };
 
+
+
 // Community Chat
 export const getCommunityMessages = async (req, res) => {
   try {
