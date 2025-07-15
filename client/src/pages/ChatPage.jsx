@@ -568,6 +568,8 @@ export default function ChatPage() {
             <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" id="imageUpload" />
             <label htmlFor="imageUpload" className="cursor-pointer text-2xl">📷</label>
 
+
+
             {imagePreview && (
                 <>
                 <div className="relative">
