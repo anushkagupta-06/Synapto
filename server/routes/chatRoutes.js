@@ -29,4 +29,5 @@ router.get('/messages/:userId', protect, getMessagesWithUser);
 const upload = multer({ storage: chatStorage });
 router.post('/upload-image', upload.single('image'), uploadImage);
 
+
 export default router;
