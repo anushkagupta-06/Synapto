@@ -1,38 +1,154 @@
-.deadline-container {
-  padding: 1rem;
-  background-color: #1b1f3a;
-  color: white;
-  border-radius: 10px;
-  width: 100%;
+.deadline-wrapper {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #110624;
+  color: #f4f0ff;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.deadline-container input,
-.deadline-container textarea {
+/* Left Panel: Form */
+.left-panel {
+  flex: 1;
+  background-color: #1a0f2b;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00000030;
+}
+
+.left-panel h2 {
+  color: #d9b4ff;
+  margin-bottom: 1rem;
+}
+
+.phone-save {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.phone-save input {
+  flex: 1;
+}
+
+.left-panel input,
+.left-panel textarea {
   width: 100%;
   margin: 0.5rem 0;
-  padding: 0.6rem;
-  border-radius: 6px;
-  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background-color: #2a1844;
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
 }
 
-.deadline-container button {
-  padding: 0.6rem 1rem;
-  margin-top: 0.5rem;
-  background-color: #6f4cf4;
+.left-panel input:focus,
+.left-panel textarea:focus {
+  outline: none;
+  border: 1px solid #a179e9;
+}
+
+.left-panel textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.left-panel button {
+  padding: 0.6rem 1.2rem;
+  margin-top: 1rem;
+  background-color: #7c3aed;
   color: white;
+  font-weight: 500;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.left-panel button:hover {
+  background-color: #5b21b6;
+}
+
+/* Right Panel: Deadline list */
+.right-panel {
+  flex: 1;
+  background-color: #1a0f2b;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00000030;
+}
+
+.right-panel h3 {
+  color: #d9b4ff;
+  margin-bottom: 1rem;
+}
+
+.deadline-list {
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #a179e9 transparent;
+}
+
+.deadline-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.deadline-list::-webkit-scrollbar-thumb {
+  background: #a179e9;
+  border-radius: 6px;
+}
+
+.deadline-list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .deadline-card {
-  background: #282c4d;
+  background: #2c1a47;
   margin: 1rem 0;
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #00000022;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.deadline-card:hover {
+  transform: translateY(-3px);
+}
+
+.deadline-card h4 {
+  margin: 0 0 0.4rem 0;
+  color: #e4d1ff;
+  font-size: 1.1rem;
+}
+
+.deadline-card p {
+  color: #cfc2f4;
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.deadline-card small {
+  display: block;
+  color: #a179e9;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
 }
 
 .deadline-card.done {
-  opacity: 0.6;
+  opacity: 0.5;
+  background-color: #382a5b;
   text-decoration: line-through;
+}
+
+.deadline-card button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
 }
