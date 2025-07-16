@@ -4,13 +4,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 
-
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_KEY,
   api_secret: process.env.CLOUD_SECRET,
 });
 
+// For chat image uploads
 const chatStorage = new CloudinaryStorage({
   cloudinary,
   params: {
@@ -19,6 +19,7 @@ const chatStorage = new CloudinaryStorage({
   },
 });
 
+// For user profile images
 const profileStorage = new CloudinaryStorage({
   cloudinary,
   params: {
