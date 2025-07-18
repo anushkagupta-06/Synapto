@@ -8,8 +8,10 @@ import { GoogleProvider } from "./context/googleapi.jsx"; // Ensure this import 
 import { BrowserRouter } from "react-router-dom";
 import { FileProvider } from "./context/Filecontext.jsx";
 import { TwilioProvider } from "./context/twilio.jsx";
-import { MassBunkProvider } from "./context/MassBunkContext.jsx"
-import {DeadlineProvider} from  "./context/DeadlineContext.jsx";
+import { MassBunkProvider } from "./context/MassBunkContext.jsx";
+import { DeadlineProvider } from "./context/DeadlineContext.jsx";
+
+// import {VideoProvider} from "./context/VideoContext.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -23,9 +25,10 @@ root.render(
               <TwilioProvider>
                 <MassBunkProvider>
                   <DeadlineProvider>
-                  
-                <App />
-                </DeadlineProvider>
+                   
+                      <App />
+                   
+                  </DeadlineProvider>
                 </MassBunkProvider>
               </TwilioProvider>
             </FileProvider>

@@ -21,9 +21,14 @@ import MassBunkPage from "./pages/MassBunk.jsx";
 import ImposterPage from "./pages/Imposter.jsx";
 import Bunk from "./pages/Bunk.jsx"
 import DeadlineManager from './pages/Deadline.jsx';
+import VideoSummarizer from "./pages/VideoSummarizer.jsx";
+
 function App() {
   return (
     <Routes>
+      
+      {/* <Route path="/video-summary" element={<VideoSummarizer/>} /> */}
+      <Route path="/transcriber" element={<VideoSummarizer/>} />
        <Route path="/deadline" element={<DeadlineManager/>} />
  <Route path="/dashboard" element={<HomePage/>} />
       <Route path="/bunk" element={<Bunk/>} />
