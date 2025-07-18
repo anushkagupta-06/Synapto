@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 
 
 export default function Settings() {
-  const token = JSON.parse(localStorage.getItem("synapto"))?.token;
+  const token = localStorage.getItem("synapto_token");
   const [preview, setPreview] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -16,12 +16,11 @@ export default function Settings() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5050/api/chat/me", {
+      .get("http://localhost:5050/api/user/me", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         if (res.data) {
-            console.log("User fetched:", res.data); ////////////////////////////
             setCurrentUser(res.data);
             setFormData({ name: res.data.name, bio: res.data.bio || "" });
           } else {
