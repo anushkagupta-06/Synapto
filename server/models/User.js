@@ -31,11 +31,20 @@ const userSchema = new mongoose.Schema({
   type: String,
   default: "", 
 },
+git_link:{
+  type:String
+},
+linkedin_link:{
+  type:String
+},
+insta_link:{
+  type:String
+},
 bio: { type: String, default: "" },
 resetPasswordOTP: String,
 resetPasswordExpires: Date,
-
   isAdmin: { type: Boolean, default: false },
+  phoneNumber: { type: String }, 
 
 
 }, { timestamps: true });

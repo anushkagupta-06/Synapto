@@ -1,3 +1,4 @@
+
 import File from "../models/File.js";
 import {cloudinary} from "../utils/cloudinary.js";
 import extractText from "../utils/extractText.js";
@@ -13,14 +14,14 @@ export const uploadFile = async (req, res) => {
     } catch (pingError) {
       console.error("Cloudinary ping failed:", pingError);
     }
-
+    
     console.log("File received:", req.file.originalname, "Size:", req.file.size);
-
+console.log("file in buffer",req.file.buffer);
     // Fixed Cloudinary upload - removed format parameter and used auto resource_type
     const uploaded = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
-          resource_type: "auto", // Changed from "raw" to "auto"
+          resource_type: "raw", // Changed from "raw" to "auto"
           folder: "study_files",
           // Removed format: "pdf" - let Cloudinary auto-detect
           public_id: `${Date.now()}-${req.file.originalname.replace(/\.[^/.]+$/, "")}`, // Optional: custom public_id
@@ -42,6 +43,7 @@ export const uploadFile = async (req, res) => {
     console.log("Cloudinary upload successful:", uploaded.secure_url);
 
     // Extract text
+   
     const text = await extractText(req.file);
 
     // Save to DB

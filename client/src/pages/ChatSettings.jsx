@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+
+
 export default function Settings() {
   const token = localStorage.getItem("synapto_token");
   const [preview, setPreview] = useState(null);

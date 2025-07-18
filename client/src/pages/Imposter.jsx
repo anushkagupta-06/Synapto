@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMassBunk } from "../context/MassBunkContext";
 import { useAuth } from "../context/contextapi";
-import "./imposter.css";
+import "./Imposter.css";
 
 const ImposterPage = () => {
   const { history, markImposter } = useMassBunk();
@@ -13,7 +13,7 @@ const ImposterPage = () => {
     <div className="imposter-page">
       <h2>🕵️ Imposter Control Panel</h2>
 
-      {localuser.isAdmin ? (
+      {localuser?.isAdmin ? (
   <>
     <div className="imposter-mark-section">
       <h3>🚨 Mark Imposters</h3>

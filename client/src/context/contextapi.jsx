@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState,useEffect } from "react";
 
 // import { baseUrl } from "../utils/services.js"; 
 import { useNavigate } from 'react-router-dom';
@@ -12,14 +12,18 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
    const navigate = useNavigate()
-//a variable to store the local storage user....
 
-    const [localuser, setLocalUser] = useState(() => {
-        const userString = localStorage.getItem("synapto");
-        const userObj = userString ? JSON.parse(userString) : null;
-        return userObj?.user || null;  })
- 
 
+ const [localuser, setLocalUser] = useState(null);
+
+
+useEffect(() => {
+  const stored = localStorage.getItem("synapto");
+  if (stored) {
+    const parsed = JSON.parse(stored);
+    setLocalUser(parsed?.user || parsed); // Handles both { user } and direct user obj
+  }
+}, []);
 
 
 //its for signup
@@ -67,7 +71,6 @@ const handleSubmitLogin = useCallback(async (e, formData) => {
   }, []);
 
 
-
 const handleGoogleSuccessRegister = useCallback(async (credentialResponse) => {
     try {
         const { credential } = credentialResponse;
@@ -96,6 +99,7 @@ const handleGoogleSuccessLogin = useCallback(async (credentialResponse) => {
             credential,
         });
         // Save token and user info
+        localStorage.setItem("synapto",JSON.stringify(res.data));
         localStorage.setItem("synapto_token", res.data.token);
         setLocalUser(res.data);
         const response = await axios.post("http://localhost:5050/api/auth/passkey-login", { userId: res.data.id, userName: res.data.name });

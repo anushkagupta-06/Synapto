@@ -3,6 +3,7 @@ import { Summary } from '../controllers/Summary.js';
 import { uploadFile } from '../controllers/fileController.js';
 import  {getFiles} from '../controllers/fileController.js';
 import  {generateQuiz} from '../controllers/Quiz.js'; 
+import {FileStorage} from '../utils/cloudinary.js';
 import multer from "multer";
 
 
@@ -12,24 +13,25 @@ const router = express.Router();
 const createUpload = () => multer({
   storage: multer.memoryStorage(), // Store in memory instead of disk
   fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'application/pdf') {
-      cb(null, true);
-    } else {
-      cb(new Error('Only PDF files are allowed!'), false);
-    }
+    // if (file.mimetype === 'application/pdf') {
+    //   cb(null, true);
+    // } else {
+    //   cb(new Error('Only PDF files are allowed!'), false);
+    // }
+    cb(null,true);
   },
   limits: {
     fileSize: 20 * 1024 * 1024 // 20MB limit
   }
 });
 
+// const upload = multer({ storage:FileStorage});
 const upload = createUpload();
-const upload2 = createUpload();
 
 
 router.post("/quiz", generateQuiz);
 router.post("/summary", Summary);
-router.post("/upload", upload2.single("file"), uploadFile);
+router.post("/upload", upload.single("file"), uploadFile);
 router.get("/files", getFiles);
 
 export default router;

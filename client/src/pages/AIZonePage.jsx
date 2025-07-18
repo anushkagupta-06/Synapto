@@ -59,7 +59,7 @@ const AIZonePage = () => {
           </div>
 
           <div className="buttons">
-            <Link to="/dashboard"> <button className="btn">Start</button></Link>
+            <Link to="/video-summary"> <button className="btn">Start</button></Link>
            
            
           </div>
