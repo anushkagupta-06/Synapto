@@ -259,7 +259,7 @@ const HomePage = () => {
                 </Link>
               )}
               
-              <Link to="/profile" className="nav-link">
+              <Link to="/settings" className="nav-link"> 
                 <UserCircle size={16} style={{ marginRight: "6px" }} />
                 Profile
               </Link>

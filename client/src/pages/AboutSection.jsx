@@ -125,10 +125,9 @@ const AboutSection = () => {
       color: "#ec4899",
       picture: anushkaPic,
       achievements: [
-        "AI/ML Specialist with 3+ years experience",
-        "Winner of National Hackathon 2023",
-        "Published researcher in Educational Technology",
-        "Google Developer Student Club Lead",
+        "Full-stack MERN Developer with a strong command of React, Node.js, Express, and MongoDB",
+        "Winner AIML Hackathon under Avishkar'24",
+        "RunnerUp Tech-Maiden",
       ],
       side: "left",
     },
@@ -141,9 +140,11 @@ const AboutSection = () => {
       picture: akshayPic,
       achievements: [
         "Full-Stack Developer & UI/UX Designer",
-        "AWS Certified Solutions Architect",
-        "React.js Expert with 50+ projects",
-        "Open Source Contributor (500+ commits)",
+        "GSoc Contributer 2024",
+        "React.js Expert with 4+ projects",
+        "Founder of Horizon-lab",
+        "Code-forces:1100",
+        "2nd Runner up Doodle bot"
       ],
       side: "right",
     },
@@ -206,7 +207,7 @@ const AboutSection = () => {
                 ) : (
                   <AnimatedSection direction="left" delay={index * 0.3}>
                     <div className="achievements-card">
-                      <h4 className="achievements-title">🏆 Achievements</h4>
+                      <h4 className="achievements-title">🏆 About</h4>
                       <div className="achievements-list">
                         {developer.achievements.map((achievement, i) => (
                           <div key={i} className="achievement-item">
@@ -268,7 +269,7 @@ const AboutSection = () => {
                 ) : (
                   <AnimatedSection direction="right" delay={index * 0.3}>
                     <div className="achievements-card">
-                      <h4 className="achievements-title">🏆 Achievements</h4>
+                      <h4 className="achievements-title">🏆 About</h4>
                       <div className="achievements-list">
                         {developer.achievements.map((achievement, i) => (
                           <div key={i} className="achievement-item">
@@ -299,8 +300,7 @@ const AboutSection = () => {
                   </div>
                   <h3 className="collaboration-title">Together We Innovate</h3>
                   <p className="collaboration-description">
-                    Combining AI expertise with exceptional frontend development
-                    to create the future of education technology.
+                  Empowering the next generation of learning through a harmonious blend of AI, creativity, and cutting-edge web development.
                   </p>
                 </div>
               </AnimatedSection>
