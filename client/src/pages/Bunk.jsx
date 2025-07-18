@@ -7,11 +7,6 @@ const Bunk = () => {
   return (
     <div className="ai-home-scroll-wrapper">
       <div className="ai-zone-container">
-        
-
-       
-
-
         {/* Mass Bunk (Poll) */}
         <div className="ai-card mass-bunk-card">
           <div className="icon">
