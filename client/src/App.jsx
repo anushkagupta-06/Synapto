@@ -23,12 +23,14 @@ import ImposterPage from "./pages/Imposter.jsx";
 import Bunk from "./pages/Bunk.jsx"
 import DeadlineManager from './pages/Deadline.jsx';
 import VideoSummarizer from "./pages/VideoSummarizer.jsx";
+import Timetable from "./pages/Timetable.jsx";
 
 function App() {
   return (
     <Routes>
       
       {/* <Route path="/video-summary" element={<VideoSummarizer/>} /> */}
+       <Route path="/time-table" element={<Timetable/>} />
       <Route path="/transcriber" element={<VideoSummarizer/>} />
        <Route path="/deadline" element={<DeadlineManager/>} />
  <Route path="/dashboard" element={<HomePage/>} />
