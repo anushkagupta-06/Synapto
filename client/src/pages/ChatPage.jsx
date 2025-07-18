@@ -11,7 +11,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
-  const token = JSON.parse(localStorage.getItem("synapto"))?.token;
+  const token = localStorage.getItem("synapto_token");
 
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState(null);
@@ -23,6 +23,7 @@ export default function ChatPage() {
   const [imagePreview, setImagePreview] = useState(null);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [hoveredUser, setHoveredUser] = useState(null);
@@ -43,7 +44,7 @@ export default function ChatPage() {
 
     socket.on("connect", async () => {
       try {
-        const meRes = await axios.get("http://localhost:5050/api/chat/me", {
+        const meRes = await axios.get("http://localhost:5050/api/user/me", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCurrentUser(meRes.data);
@@ -304,9 +305,10 @@ export default function ChatPage() {
   
 
   return (
-    <div className="flex h-screen font-sans bg-[#0d1117] text-white">
+    <div className="flex flex-col md:flex-row h-screen font-sans bg-[#0d1117] text-white">
       {/* Sidebar */}
-      <div className="w-96 p-6 border-r border-gray-800 bg-[#161b22]">
+      <div className={`w-full md:w-96 h-screen overflow-y-auto p-4 md:p-6 border-r border-gray-800 bg-[#161b22] 
+          ${isMobileChatOpen ? 'hidden' : 'block'} md:block`}>
         <h2 className="text-2xl font-bold mb-6 text-[#ffa058]">Synapto Connect</h2>
 
         {/* Current User Info */}
@@ -334,7 +336,7 @@ export default function ChatPage() {
           </div>
         )}
 
-        {/* Sidebar */}
+        {/* Search */}
         <input
             type="text"
             placeholder="Search users..."
@@ -344,9 +346,12 @@ export default function ChatPage() {
         />
 
         {/* Community button */}
-        <ul className="space-y-2 overflow-y-auto max-h-[85vh] custom-scrollbar">
+        <ul className="space-y-2 overflow-y-auto max-h-[calc(100vh-250px)] custom-scrollbar">
         <li
-          onClick={() => setSelectedUser({ _id: 'community', name: 'Community Chat' })}
+          onClick={() => {
+            setSelectedUser({ _id: 'community', name: 'Community Chat' });
+            setIsMobileChatOpen(true);      // switch to chat view
+          }}
           className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold cursor-pointer transform transition-all duration-300
             ${
               selectedUser?._id === 'community'
@@ -368,7 +373,10 @@ export default function ChatPage() {
             return (
                 <li
                 key={user._id}
-                onClick={() => setSelectedUser(user)}
+                onClick={() => {
+                  setSelectedUser(user);
+                  setIsMobileChatOpen(true);  // switch to chat view on mobile
+                }}
                 className={`px-4 py-2 rounded-xl cursor-pointer transition duration-200 ${
                   selectedUser?._id === user._id
                     ? 'bg-[#205497] text-white'
@@ -407,10 +415,17 @@ export default function ChatPage() {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col">
+      <div className={`flex-1 flex flex-col ${!isMobileChatOpen ? 'hidden' : 'block'} md:flex`}>
         {/* Chat Header */}
         {selectedUser && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800 bg-[#161b22]">
+          <div className="sticky top-0 z-40 flex items-center justify-between px-6 py-4 border-b border-gray-800 bg-[#161b22]">
+            {/* Back Button (only on mobile) */}
+            <button
+              onClick={() => setIsMobileChatOpen(false)}
+              className="md:hidden mr-2 text-white text-xl"
+            >
+              ←
+            </button>
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => setShowProfile(true)}>
             <img
                 src={
@@ -446,17 +461,19 @@ export default function ChatPage() {
         )}
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto space-y-4 px-6 pt-4 pb-2 custom-scrollbar">
-          {selectedUser ? (
+        <div className="flex-1 overflow-y-auto px-6 pt-4 pb-2 space-y-4 custom-scrollbar max-h-[calc(100vh-160px)]">
+        {selectedUser ? (
             <>
               {messages.map((msg, index) => {
-                const senderId = typeof msg.sender === "object" ? msg.sender._id : msg.sender;
-                const senderObj = typeof msg.sender === "object"
-                  ? msg.sender
-                  : senderId === currentUser?._id
-                  ? currentUser
-                  : users.find(u => u._id === senderId);
-                  const isSender = senderId === currentUser?._id;
+                let senderObj;
+                if (typeof msg.sender === "object" && msg.sender !== null) {
+                  senderObj = msg.sender;
+                } else {
+                  senderObj = users.find(u => u._id === msg.sender) || currentUser;
+                }
+                const senderId = senderObj?._id;
+                const isSender = senderId === currentUser?._id;
+              
                 const time = new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 return (
                     <div key={index} className={`w-full flex ${isSender ? 'justify-end' : 'justify-start'} items-start`}>
@@ -489,7 +506,7 @@ export default function ChatPage() {
                             />
                           </a>
                         ) : (
-                            <p className="whitespace-pre-line break-words">{msg.text}</p>
+                            <p className="whitespace-pre-wrap break-words">{msg.text}</p>
                         )}
                       </div>
                   
@@ -527,11 +544,11 @@ export default function ChatPage() {
 
         {/* Input */}
         {selectedUser && (
-          <div className="px-6 py-4 border-t border-gray-800 flex items-center space-x-4 bg-[#0d1117]">
-            {/* Emoji Button */}
+          <div className="sticky bottom-0 px-3 md:px-6 py-2 md:py-3 border-t border-gray-800 bg-[#0d1117] flex items-center gap-2 md:gap-4">
+          {/* Emoji Button */}
             <button
                 onClick={() => setShowEmojiPicker(prev => !prev)}        // onClick: Toggles the visibility of the emoji picker using state showEmojiPicker
-                className="text-white text-2xl"
+                className="text-white text-xl md:text-2xl"
             >
                 😊
             </button>
@@ -562,11 +579,11 @@ export default function ChatPage() {
                 }
               }}
               placeholder="Type your message..."
-              className="flex-1 px-4 py-3 rounded-full bg-[#0d1117] text-white placeholder-gray-500 border border-[#30363d] focus:ring-2 focus:ring-[#58a6ff] outline-none"
-            />
+              className="flex-1 px-3 py-2 md:px-4 md:py-3 rounded-full bg-[#0d1117] text-white placeholder-gray-500 border border-[#30363d] focus:ring-2 focus:ring-[#58a6ff] outline-none text-sm md:text-base"
+              />
 
             <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" id="imageUpload" />
-            <label htmlFor="imageUpload" className="cursor-pointer text-2xl">📷</label>
+            <label htmlFor="imageUpload" className="cursor-pointer text-xl md:text-2xl">📷</label>
 
 
 
@@ -586,8 +603,8 @@ export default function ChatPage() {
             )}
             <button
               onClick={sendMessage}
-              className="bg-[#238636] hover:bg-[#2ea043] transition px-6 py-3 rounded-full font-semibold text-white shadow-md"
-            >
+              className="bg-[#238636] hover:bg-[#2ea043] transition px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold text-white shadow-md text-sm md:text-base"
+              >
               Send
             </button>
           </div>
@@ -595,7 +612,7 @@ export default function ChatPage() {
       </div>
       {showProfile && selectedUser && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center">
-          <div className="bg-[#161b22] p-6 rounded-xl shadow-lg w-96 text-white relative">
+          <div className="bg-[#161b22] p-4 md:p-6 rounded-xl shadow-lg w-full max-w-md text-white relative">
             <button
               onClick={() => setShowProfile(false)}
               className="absolute top-2 right-3 text-white text-xl"
@@ -616,7 +633,7 @@ export default function ChatPage() {
               {selectedUser._id === 'community' ? (
               <>
                 <p className="text-gray-400 text-center">A public space to share ideas with everyone 🌐</p>
-                <p className="text-sm text-gray-500">Email: community@quantumconnect.io</p>
+                <p className="text-sm text-gray-500">Email: community@synapto.io</p>
                 <p className="text-sm text-gray-500">You Joined: {new Date(currentUser?.createdAt).toLocaleDateString()}</p>
               </>
               ) : (
@@ -650,7 +667,11 @@ export default function ChatPage() {
             <h2 className="text-xl font-semibold">{hoveredUser.name}</h2>
             <p className="text-gray-400 text-center">{hoveredUser.bio || "No bio available."}</p>
             <p className="text-sm text-gray-500">Email: {hoveredUser.email || "N/A"}</p>
-            <p className="text-sm text-gray-500">Joined: {new Date(hoveredUser.createdAt).toLocaleDateString()}</p>
+            <p className="text-sm text-gray-500">
+            {hoveredUser.createdAt
+              ? `Joined: ${new Date(hoveredUser.createdAt).toLocaleDateString()}`
+                : "Join date unknown"}
+            </p>
           </div>
         </div>
         </div>
