@@ -1,19 +1,17 @@
-<h1 align="center">🎓 AI Class Manager</h1>
+<h1 align="center">🎓 Synapto — AI Class Manager</h1>
 <p align="center">
   Your intelligent academic companion – automate, organize, and excel with AI.
 </p>
 
 <p align="center">
- 
-  <img src="https://img.shields.io/badge/Platform-Web%20+%20Mobile-green" alt="Platform Badge"/>
-  <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License Badge"/>
+  <img src="https://img.shields.io/badge/Platform-Web%20App-green" alt="Platform Badge"/>
 </p>
 
 ---
 
 ## 🌟 Overview
 
-**AI Class Manager** is an all-in-one academic assistant powered by Artificial Intelligence. Designed for students and educators, it combines scheduling, summarization, doubt solving, exam preparation, and more — all in a seamless platform.
+**Synapto** is a full-stack, AI-powered academic platform designed for students and institutions. It blends automation, productivity, and intelligence to offer tools like attendance tracking, note management, real-time chatting, smart AI chatbot support, and much more — all under a single sleek dashboard.
 
 ---
 
@@ -23,11 +21,22 @@
 
 | Feature                  | Description |
 |--------------------------|-------------|
-| 📅 **Smart Timetable Assistant** | Auto-generate weekly schedules, suggest best slots for events, and set smart reminders. |
-| 📝 **Notes & Summary Generator** | Create AI-generated lecture notes and convert voice notes to structured summaries. |
-| 🤖 **Doubt Solver Chatbot** | Ask academic questions and receive AI responses instantly, with relevant resource links. |
-| 📌 **Assignment Helper** | Track deadlines, get AI help with code/ideas, and check for plagiarism. |
-| 📉 **Attendance Analyzer** | Predict shortages, view trends, and receive personalized alerts. |
+| 🤖 **Doubt Solver Chatbot** ✅ | Ask academic questions and receive smart responses with context, backed by OpenRouter API. Includes 3D bot, chat history, and custom UI. |
+| 📝 **Notes Management** ✅ | Add, organize, and manage academic notes per subject with a clean UI and CRUD capabilities. |
+| 📉 **Attendance Tracker** ✅ | Mark attendance per subject with date-wise tracking, percentage calculator, and intuitive checkbox-based UI. |
+| 📂 **Subject Resource Hub** | Planned — Upload and categorize PDFs, links, or files for each subject. |
+| 📌 **Assignment Helper** | Planned — Track deadlines and integrate AI help with code and ideas. |
+
+---
+
+### 💬 Real-Time Chat System ✅
+
+| Feature         | Description |
+|-----------------|-------------|
+| 👥 **One-to-One Chat** | Real-time messaging with Socket.IO, image sharing via Cloudinary, typing indicators, online status, and unread message count. |
+| 🌐 **Community Chat** | Group conversation space for all users to collaborate, share, and discuss. |
+| 🧑‍🎓 **User Profiles** | Profile settings with image, bio, name, and joined date. View others' profiles before chatting. |
+| 🧠 **AI Assistant Chatbot** | Smart GPT-style chatbot built into the chat layout with Spline bot, animations, and prompt history. |
 
 ---
 
@@ -35,9 +44,10 @@
 
 | Tool                     | Capabilities |
 |--------------------------|--------------|
-| 📂 **Subject Resource Hub** | Share resources with AI auto-tagging and smart study suggestions. |
-| 🧪 **Exam Prep Mode** | Generate practice tests, explain MCQs, and track your progress. |
-| ⚙️ **Project & Lab Manager** | Manage tasks, auto-generate reports, and integrate with GitHub. |
+| 📒 **Notes Section** ✅ | Create, view, and manage subject-wise notes from the dashboard. |
+| 🧾 **Professor Directory** ✅ | Browse department professors with name, contact, email, and area of interest. |
+| 🧪 **Exam Prep Mode** | Planned — Create MCQs, generate mock papers, and track scores. |
+| ⚙️ **Lab/Project Manager** | Upcoming — Track project deadlines, GitHub links, and automate lab reports. |
 
 ---
 
@@ -45,8 +55,8 @@
 
 | Feature | Description |
 |--------|-------------|
-| 📢 **Events & Notice Board** | Create academic events, manage RSVPs, and receive weekly summaries. |
-| ✅ **Task & Reminder System** | Track individual or group tasks with voice input support. |
+| 📢 **Events & Notice Board** | Upcoming — Centralized board to view college events and academic notices. |
+| ✅ **Task Manager & Reminders** | Planned — Personal and group task management with smart alerts. |
 
 ---
 
@@ -54,59 +64,53 @@
 
 | Feature | Description |
 |--------|-------------|
-| 🔗 **Peer Connect / Study Buddy** | Match with peers by interest, share doubts anonymously. |
-| 🗣️ **Feedback Collector** | Collect anonymous feedback and summarize with AI insights. |
+| 🔗 **Study Buddy Match** | Planned — Match users based on subject interests and allow anonymous doubt exchange. |
+| 🗣️ **Feedback Collector** | Planned — Gather student feedback and summarize trends using AI. |
 
 ---
 
 ## 🔌 Integration & Platforms
 
-- 🏛️ **College Portal Integration** – Sync your academic data, grades, and circulars.
-- 📱 **Mobile App / PWA** – Get real-time notifications and offline access to notes.
+- 🏛️ **College Portal Integration** – Planned sync for academic records and grades.
+- 📱 **Mobile-Responsive Web App** – Works seamlessly on all devices. PWA support upcoming.
 
 ---
 
-## 🧪 Bonus AI Ideas
+## 🧪 Bonus AI Ideas (Planned)
 
 - 🎤 Voice assistant integration
-- 😄 AI-generated memes for your class groups
+- 😄 AI-generated memes for class groups
 - 🧾 Automatic meeting/class summaries
 
 ---
 
-## 🛠️ Suggested Tech Stack
+## 🛠️ Tech Stack
 
-| Layer       | Tech Suggestions |
+| Layer       | Technologies Used |
 |-------------|------------------|
-| **Frontend**  | React.js, Flutter, or Vue.js |
-| **Backend**   | Node.js, Django, or Firebase |
-| **AI Models** | HuggingFace Transformers, OpenAI GPT, Whisper |
-| **Database**  | MongoDB, PostgreSQL |
-| **Hosting**   | Vercel, Heroku, AWS |
+| **Frontend**  | React.js, Tailwind CSS,  GSAP |
+| **Backend**   | Express.js, Node.js, Socket.IO |
+| **AI Models** | OpenRouter API (OpenAI / Claude) |
+| **Database**  | MongoDB + Mongoose |
+| **File Upload** | Cloudinary + Multer |
+| **Auth**       | JWT, Google OAuth |
+| **Hosting**    | Render, Vercel, MongoDB Atlas |
 
 ---
 
 ## 🧑‍💻 Contributing
 
 We welcome contributions in:
-- ✨ New features
-- 🎨 UI/UX enhancements
-- 🧠 AI tuning
-- 📚 Better documentation
+- ✨ New features and chat enhancements
+- 🎨 UI/UX improvements
+- 🧠 AI feature integration
+- 🧪 Bug fixes and testing
 
-> Start by forking this repo, opening an issue, or submitting a pull request.
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** — feel free to use and modify.
+> Fork this repo, open an issue or PR, and let's build the future of education tech.
 
 ---
+
 
 ## 🤝 Team
 
-Made with ❤️ by Team Synapto
-
----
-
+Made with ❤️ by [Anushka Gupta](https://github.com/anushkagupta-06), [Akshay Yadav](https://github.com/MNNITAK), and Team Synapto 🚀  
