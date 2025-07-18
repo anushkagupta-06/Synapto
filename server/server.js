@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
 import express from 'express';
 import cors from 'cors';
 import connectDB from './config/db.js';
@@ -16,6 +15,11 @@ import { Server } from 'socket.io';
 import { setupChatSocket } from './sockets/chatSocket.js';
 import userSettingsRoutes from './routes/userSettingsRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
+import deadlineRoutes from './routes/DeadlineRoutes.js';
+
+
+
+
 
 connectDB();
 
@@ -46,11 +50,12 @@ app.use('/api/attendance', attendanceRoutes);
 app.use("/api/chatbot", chatBotRoutes);
 app.use('/api/chat', chatRoutes); 
 
+
 // Socket.io
 setupChatSocket(io);
-
+// app.use("/api/videos",videoRoutes);
 app.use("/api/user", userSettingsRoutes);
-
+app.use('/api/deadlines', deadlineRoutes);
 app.use('/api/notes', noteRoutes);
 
 app.use("/api/chat", chatRoutes);
