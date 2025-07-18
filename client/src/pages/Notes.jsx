@@ -8,9 +8,9 @@ const pastelColors = [
   'bg-yellow-300',
   'bg-green-300',
   'bg-blue-200',
-  'bg-red-200',
+  'bg-red-400',
   'bg-orange-200',
-  'bg-cyan-200',
+  'bg-cyan-200', 
 ];
 
 const Notes = () => {
@@ -18,8 +18,7 @@ const Notes = () => {
   const [form, setForm] = useState({ title: '', content: '', color: pastelColors[0], _id: null });
   const [loading, setLoading] = useState(false);
 
-  const userData = JSON.parse(localStorage.getItem("synapto"));
-  const token = userData?.token;
+  const token = localStorage.getItem("synapto_token");
 
   const fetchNotes = async () => {
     try {
