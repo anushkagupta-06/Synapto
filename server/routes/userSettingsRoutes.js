@@ -9,3 +9,4 @@ router.patch("/profile-image", protect, upload.single("image"), updateProfileIma
 router.patch("/update-details", protect, updateDetails);
 
 export default router;
+
