@@ -550,11 +550,14 @@ const HomePage = () => {
                   >
                     <FaGithub size={20} />
                   </a>
-                  <a href="#" className="social-link" aria-label="LinkedIn">
-                    <FaLinkedin size={20} />
-                  </a>
                   <a href="#" className="social-link" aria-label="Twitter">
                     <FaTwitter size={20} />
+                  </a>
+                  <a href="https://www.linkedin.com/in/anushka-gupta-0b6247317/" className="social-link" aria-label="LinkedIn">
+                    <FaLinkedin size={20} />
+                  </a>
+                  <a href="https://www.linkedin.com/in/akshay-yadav-300a8120b/" className="social-link" aria-label="LinkedIn">
+                    <FaLinkedin size={20} />
                   </a>
                 </div>
               </div>

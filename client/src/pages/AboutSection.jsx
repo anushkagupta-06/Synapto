@@ -119,7 +119,7 @@ const AboutSection = () => {
   const developers = [
     {
       name: "Anushka Gupta",
-      role: "Lead Developer",
+      role: "Full-Stack Developer",
       initials: "AG",
       gradient: "linear-gradient(135deg, #ec4899, #8b5cf6)",
       color: "#ec4899",
@@ -128,18 +128,19 @@ const AboutSection = () => {
         "Full-stack MERN Developer with a strong command of React, Node.js, Express, and MongoDB",
         "Winner AIML Hackathon under Avishkar'24",
         "RunnerUp Tech-Maiden",
+        "2nd Runner up Doodle bot"
       ],
       side: "left",
     },
     {
       name: "Akshay Yadav",
-      role: "Frontend Architect",
+      role: "Full-Stack Developer",
       initials: "AY",
       gradient: "linear-gradient(135deg, #3b82f6, #06b6d4)",
       color: "#3b82f6",
       picture: akshayPic,
       achievements: [
-        "Full-Stack Developer & UI/UX Designer",
+        "Full-Stack Developer & Frontend Architect",
         "GSoc Contributer 2024",
         "React.js Expert with 4+ projects",
         "Founder of Horizon-lab",
