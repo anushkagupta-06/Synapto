@@ -6,7 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { AuthProvider } from "./context/contextapi.jsx";
 import { GoogleProvider } from "./context/googleapi.jsx"; // Ensure this import is correct
 import { BrowserRouter } from "react-router-dom";
-import { FileProvider } from "./context/Filecontext.jsx";
+import { FileProvider } from "./context/FileContext.jsx";
 import { TwilioProvider } from "./context/twilio.jsx";
 import { MassBunkProvider } from "./context/MassBunkContext.jsx";
 import { DeadlineProvider } from "./context/DeadlineContext.jsx";
