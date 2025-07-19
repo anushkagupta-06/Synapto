@@ -27,14 +27,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: process.env.VITE_API_URL,
     methods: ['GET', 'POST']
   }
 });
 
 // app.use(cors()); // Enable CORS
 const corsOptions = {
-  origin: ['http://localhost:5173','http://localhost:5050'], // Allowed 
+  origin: process.env.VITE_API_URL, // Allowed 
 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Allowed HTTP methods
   credentials: true, // Allow cookies and credentials
@@ -68,5 +68,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5050;
 
 server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at process.env.VITE_API_URL`);
 });

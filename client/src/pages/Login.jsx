@@ -19,7 +19,7 @@ const Login = () => {
   //   e.preventDefault();
   //   try {
   //     const res = await axios.post(
-  //       "http://localhost:5050/api/auth/login",
+  //       `${import.meta.env.VITE_API_URL}/api/auth/login`,
   //       formData
   //     );
   //     console.log("Login Success:", res.data);
@@ -40,7 +40,7 @@ const Login = () => {
   //   try {
   //     console.log("Google Response:", credentialResponse);
   //     const { credential } = credentialResponse;
-  //     const res = await axios.post("http://localhost:5050/api/auth/google-login", {
+  //     const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/google-login`, {
   //       credential,
   //     });
   //     // Save token and user info

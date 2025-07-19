@@ -22,7 +22,7 @@ const Notes = () => {
 
   const fetchNotes = async () => {
     try {
-      const res = await axios.get('http://localhost:5050/api/notes', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes(res.data);
@@ -36,11 +36,11 @@ const Notes = () => {
     setLoading(true);
     try {
       if (form._id) {
-        await axios.put(`http://localhost:5050/api/notes/${form._id}`, form, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/notes/${form._id}`, form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
-        await axios.post('http://localhost:5050/api/notes', form, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/notes`, form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
@@ -59,7 +59,7 @@ const Notes = () => {
 
   const toggleLike = async (id) => {
     try {
-      const res = await axios.patch(`http://localhost:5050/api/notes/like/${id}`, null, {
+      const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/notes/like/${id}`, null, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const updatedNotes = notes.map((n) =>
@@ -73,7 +73,7 @@ const Notes = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5050/api/notes/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchNotes();

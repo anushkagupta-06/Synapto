@@ -9,23 +9,23 @@ export const DeadlineProvider = ({ children }) => {
   const [deadlines, setDeadlines] = useState([]);
 
   const fetchDeadlines = async (userId) => {
-    const res = await axios.get(`http://localhost:5050/api/deadlines?userId=${userId}`);
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/deadlines?userId=${userId}`);
     setDeadlines(res.data);
   };
 
   const addDeadline = async (deadlineData) => {
     console.log("deadline data",deadlineData);
-    const res = await axios.post('http://localhost:5050/api/deadlines', deadlineData);
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/deadlines`, deadlineData);
     setDeadlines(prev => [...prev, res.data]);
   };
 
   const markDone = async (deadlineId) => {
-    const res = await axios.put(`http://localhost:5050/api/deadlines/${deadlineId}/done`);
+    const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/deadlines/${deadlineId}/done`);
     setDeadlines(prev => prev.map(d => d._id === deadlineId ? res.data : d));
   };
 
   const savePhoneNumber = async (userId, phoneNumber) => {
-    await axios.post('http://localhost:5050/api/deadlines/save-phone', { userId, phoneNumber });
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/deadlines/save-phone`, { userId, phoneNumber });
   };
 
   return (

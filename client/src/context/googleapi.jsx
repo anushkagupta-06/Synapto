@@ -27,7 +27,7 @@ export const GoogleProvider = ({ children }) => {
 
        navigate("/summary");
       const res = await axios.post(
-        "http://localhost:5050/api/pdf/summary",
+        `${import.meta.env.VITE_API_URL}/api/pdf/summary`,
         {fileId}
       );
       setSummary(res.data.summary);
@@ -52,7 +52,7 @@ const quizGenerator = useCallback(async (fileId) => {
       return;
     }
     navigate("/quiz");
-    const res = await axios.post("http://localhost:5050/api/pdf/quiz", { fileId });
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/pdf/quiz`, { fileId });
     const { quiz } = res.data;
     setQuizData(quiz);
   } catch (error) {

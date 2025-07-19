@@ -17,8 +17,8 @@ import base64url from "base64url";
 // };
 // const verificationResult = await verifyAuthenticationResponse({
 //   expectedChallenge: user.challenge,
-//   expectedOrigin: 'http://localhost:5173',
-//   expectedRPID: 'localhost',
+//   expectedOrigin: "https://synapto-u7zn.vercel.app",
+//   expectedRPID: "synapto-u7zn.vercel.app",
 //   authenticator,
 //   response: credential,
 // });
@@ -40,7 +40,7 @@ const Passkey = async (req, res) => {
     }
 
     const challengePayload = await generateRegistrationOptions({
-      rpID: "localhost",
+      rpID: "synapto-u7zn.vercel.app",
       rpName: "Synapto",
       attestationType: "none",
       userName: userName,
@@ -79,10 +79,10 @@ const PasskeyVerify = async (req, res) => {
       return res.status(400).json({ error: "User or challenge not found" });
     }
 
-    const verificationResult = await verifyRegistrationResponse({
+    const verificationResult = await verifyRegistrationResponse({         /////${import.meta.env.VITE_API_URL}
       expectedChallenge: user.challenge,
-      expectedOrigin: "http://localhost:5173",
-      expectedRPID: "localhost",
+      expectedOrigin: "https://synapto-u7zn.vercel.app",
+      expectedRPID: "synapto-u7zn.vercel.app",
       response: cred,
     });
 
@@ -155,7 +155,7 @@ const PasskeyLogin = async (req, res) => {
     }
 
     const opts = await generateAuthenticationOptions({
-      rpID: "localhost",
+      rpID: "synapto-u7zn.vercel.app",
       timeout: 30_000,
       userVerification: "preferred",
     });
@@ -192,8 +192,8 @@ const PasskeyVerifyLogin = async (req, res) => {
 
     const verificationResult = await verifyAuthenticationResponse({
       expectedChallenge: user.challenge,
-      expectedOrigin: "http://localhost:5173",
-      expectedRPID: "localhost",
+      expectedOrigin: "https://synapto-u7zn.vercel.app",
+      expectedRPID: "synapto-u7zn.vercel.app",
       response: credential,
       authenticator,
     });
@@ -247,8 +247,8 @@ export { Passkey, PasskeyVerify, PasskeyLogin, PasskeyVerifyLogin };
 //     const userIDBuffer = Buffer.from(userId, 'utf8');
 
 //     const challengePayload = await generateRegistrationOptions({
-//         // rpID: 'localhost',
-//         rpID: 'localhost',
+//         // rpID: "synapto-u7zn.vercel.app",
+//         rpID: "synapto-u7zn.vercel.app",
 //         rpName: 'Synapto',
 //         attestationType: 'none',
 //         userName: userName,
@@ -279,8 +279,8 @@ export { Passkey, PasskeyVerify, PasskeyLogin, PasskeyVerifyLogin };
 
 //     const verificationResult = await verifyRegistrationResponse({
 //         expectedChallenge: challengeStore[Id],
-//         expectedOrigin: 'http://localhost:5173 || https://localhost:5174',
-//         expectedRPID: 'localhost',
+//         expectedOrigin: "https://synapto-u7zn.vercel.app",
+//         expectedRPID: "synapto-u7zn.vercel.app",
 //         response: cred,
 //     })
 

@@ -19,7 +19,7 @@ const handleSend = useCallback(
         setAlertLoading(true);
 
         try {
-            const res = await axios.post("http://localhost:5050/api/alert/admin", { message });
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/alert/admin`, { message });
 
             if (res && res.data && res.data.message) {
                 setResponse(res.data.message);

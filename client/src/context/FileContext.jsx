@@ -14,7 +14,7 @@ export const FileProvider = ({ children }) => {
     formData.append("subject", subject);
 
     try {
-      const res = await axios.post("http://localhost:5050/api/pdf/upload", formData);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/pdf/upload`, formData);
       alert("File uploaded!");
       return res.data;
     } catch (err) {
@@ -25,7 +25,7 @@ export const FileProvider = ({ children }) => {
 
   const fetchFilesBySubject = async (subject) => {
     try {
-      const res = await axios.get(`http://localhost:5050/api/pdf/files?subject=${subject}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/pdf/files?subject=${subject}`);
       setFiles(res.data);
     } catch (err) {
       console.error("Fetch files error:", err);
