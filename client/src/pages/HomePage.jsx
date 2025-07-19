@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import "./HomePage.css";
+import "./Homepage.css";
 import Spline from "@splinetool/react-spline";
 import { useAuth } from "../context/contextapi";
 import {
