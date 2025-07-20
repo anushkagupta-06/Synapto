@@ -141,9 +141,11 @@ const AboutSection = () => {
       picture: akshayPic,
       achievements: [
         "Full-Stack Developer & UI/UX Designer",
-        "AWS Certified Solutions Architect",
-        "React.js Expert with 50+ projects",
-        "Open Source Contributor (500+ commits)",
+        "GSoc Contributer 2024",
+        "React.js Expert with 4+ projects",
+        "Founder of Horizon-lab",
+        "Code-forces:1100",
+        "2nd Runner up Doodle bot"
       ],
       side: "right",
     },
