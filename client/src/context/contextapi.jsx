@@ -44,7 +44,7 @@ const handleSubmitRegister = useCallback(async (e,formData) => {
         console.error("Signup Error:", err.response?.data || err.message);
         alert("Signup failed.");
     }
-}, []);
+}, [navigate]);
 
 
 const handleSubmitLogin = useCallback(async (e, formData) => {
@@ -68,7 +68,7 @@ const handleSubmitLogin = useCallback(async (e, formData) => {
       console.error("Login Error:", err.response?.data || err.message);
       alert("Login failed. Check your credentials.");
     }
-  }, []);
+  }, [navigate]);
 
 
 const handleGoogleSuccessRegister = useCallback(async (credentialResponse) => {
@@ -164,7 +164,7 @@ const logout = useCallback(() => {
       //now saving this authentication result in model schema
 
 
-      const response2 = await axios.post("${import.meta.env.VITE_API_URL}/api/auth/passkey-verify",{userId: localuser.id, cred: authenticationResult});
+      const response2 = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/passkey-verify`,{userId: localuser.id, cred: authenticationResult});
 
       if(response2.data.error){
         console.error("Error verifying passkey:", response2.data.error);
@@ -179,7 +179,7 @@ const logout = useCallback(() => {
       console.error("Error setting passkey:", error);
       // Handle error, e.g., show an error message
     }
-  })
+  }, [navigate])
   
   return (
     <AuthContext.Provider
