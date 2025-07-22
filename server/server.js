@@ -63,10 +63,16 @@ app.options("*", cors({
 }));
 
 app.use(express.json());
+
+console.log("Mounting route: /api/auth");
 app.use('/api/auth', authRoutes);
+console.log("Mounting route: /api/pdf");
 app.use('/api/pdf', pdfRoutes);
+console.log("Mounting route: /api/attendance");
 app.use('/api/attendance', attendanceRoutes);
+console.log("Mounting route: /api/chatbot");
 app.use("/api/chatbot", chatBotRoutes);
+console.log("Mounting route: /api/chat");
 app.use('/api/chat', chatRoutes); 
 
 
