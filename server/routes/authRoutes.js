@@ -7,9 +7,11 @@ import {
     verifyOtp,
     resetPassword,
   } from "../controllers/authControllers.js";  
+  import { googleLogin } from '../controllers/authController.js';
 
 const router = express.Router();
 
+router.post('/google-login', googleLogin);
 router.post('/signup', registerUser);
 router.post('/login', loginUser);
 router.post("/google-login", googleLogin);
