@@ -79,11 +79,15 @@ app.use('/api/chat', chatRoutes);
 // Socket.io
 setupChatSocket(io);
 // app.use("/api/videos",videoRoutes);
+console.log("Mounting: /api/user");
 app.use("/api/user", userSettingsRoutes);
+console.log("Mounting: /api/deadlines");
 app.use('/api/deadlines', deadlineRoutes);
+console.log("Mounting: /api/notes");
 app.use('/api/notes', noteRoutes);
-
+console.log("Mounting: /api/alert");
 app.use("/api/alert",twilioRoutes);
+console.log("Mounting: /api/massbunk");
 app.use("/api/massbunk",MassBunkRoutes)
 
 
