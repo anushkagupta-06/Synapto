@@ -25,28 +25,44 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
+
+const allowedOrigins = [
+  process.env.CLIENT_URL || "https://synapto-u7zn.vercel.app",
+  "http://localhost:5173", // keep for local dev
+];
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL,
-    methods: ['GET', 'POST']
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true,
   }
 });
 
-// app.use(cors()); // Enable CORS
-const corsOptions = {
-  origin: process.env.CLIENT_URL, // Allowed 
 
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Allowed HTTP methods
-  credentials: true, // Allow cookies and credentials
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+ 
+app.options("*", cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
-
-};
-
-app.use(cors(corsOptions));
 app.use(express.json());
-
-app.options('*', cors(corsOptions)); // Preflight support
-
 app.use('/api/auth', authRoutes);
 app.use('/api/pdf', pdfRoutes);
 app.use('/api/attendance', attendanceRoutes);
@@ -71,5 +87,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5050;
 
 server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running at ${process.env.CLIENT_URL}`);
 });
