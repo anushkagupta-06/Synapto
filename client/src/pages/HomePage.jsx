@@ -37,7 +37,8 @@ import {
   MapPin,
   Heart,
   ExternalLink,
-  Home
+  Home,
+   CalendarClock
 } from "lucide-react";
 
 // Animation variants - optimized for better scroll performance
@@ -245,6 +246,10 @@ const HomePage = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.4 }}
         >
+          <Link to="/time-table" className="nav-link" >
+                  < CalendarClock size={16} style={{ marginRight: "6px" }} />
+                  Time-table
+                </Link>
           {localuser ? (
             <>
           
@@ -259,7 +264,7 @@ const HomePage = () => {
                 </Link>
               )}
               
-              <Link to="/profile" className="nav-link">
+              <Link to="/settings" className="nav-link"> 
                 <UserCircle size={16} style={{ marginRight: "6px" }} />
                 Profile
               </Link>
