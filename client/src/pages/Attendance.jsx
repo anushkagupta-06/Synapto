@@ -18,7 +18,7 @@ const Attendance = () => {
     const fetchAttendance = async () => {
       try {
         const token = localStorage.getItem("synapto_token");
-        const res = await axios.get("http://localhost:5050/api/attendance", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/attendance`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -47,7 +47,7 @@ const Attendance = () => {
     try {
       const token = localStorage.getItem("synapto_token");
       await axios.post(
-        "http://localhost:5050/api/attendance",
+        `${import.meta.env.VITE_API_URL}/api/attendance`,
         { subject, date, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

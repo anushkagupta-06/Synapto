@@ -11,7 +11,7 @@ const ResetPassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5050/api/auth/reset-password", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/reset-password`, {
         email: state.email,
         otp: state.otp,
         newPassword,

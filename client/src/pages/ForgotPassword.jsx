@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleRequestOTP = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5050/api/auth/request-otp", { email });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/request-otp`, { email });
       setStatus("OTP sent to your email.");
       setTimeout(() => {
         navigate("/verify-otp", { state: { email } });

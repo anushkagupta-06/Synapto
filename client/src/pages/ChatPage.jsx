@@ -39,18 +39,18 @@ export default function ChatPage() {
 
   // Socket setup and user fetch
   useEffect(() => {
-    const socket = io("http://localhost:5050");
+    const socket = io(`${import.meta.env.VITE_API_URL}`);
     socketRef.current = socket;
 
     socket.on("connect", async () => {
       try {
-        const meRes = await axios.get("http://localhost:5050/api/user/me", {
+        const meRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCurrentUser(meRes.data);
         socket.emit("join", meRes.data._id);
 
-        const usersRes = await axios.get("http://localhost:5050/api/chat/users", {
+        const usersRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/chat/users`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUsers(usersRes.data);
@@ -86,7 +86,7 @@ export default function ChatPage() {
         ? 'messages/community'
         : `messages/${selectedUser._id}`;
     
-      axios.get(`http://localhost:5050/api/chat/${endpoint}`, {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/chat/${endpoint}`, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => setMessages(res.data)).catch(console.error);
     }
@@ -198,7 +198,7 @@ export default function ChatPage() {
 
     try {
       const isCommunity = selectedUser?._id === 'community';
-      const res = await axios.post("http://localhost:5050/api/chat/message", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/chat/message`, {
       receiverId: isCommunity ? null : selectedUser._id,
       text: newMessage.trim(),
       isCommunity,
@@ -264,7 +264,7 @@ export default function ChatPage() {
     const formData = new FormData();
     formData.append('image', imageFile);
     try {
-      const res = await axios.post('http://localhost:5050/api/chat/upload-image', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/chat/upload-image`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
@@ -273,7 +273,7 @@ export default function ChatPage() {
       const imageUrl = res.data.url;
       // Now send this URL as a message
       const isCommunity = selectedUser._id === 'community';
-      const msgRes = await axios.post('http://localhost:5050/api/chat/message', {
+      const msgRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/chat/message`, {
         receiverId: isCommunity ? null : selectedUser._id,
         text: imageUrl,
         isImage: true,

@@ -14,7 +14,7 @@ export default function Settings() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5050/api/user/me", {
+      .get(`${import.meta.env.VITE_API_URL}/api/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -45,7 +45,7 @@ export default function Settings() {
     try {
       setUploading(true);
       const res = await axios.patch(
-        "http://localhost:5050/api/user/profile-image",
+        `${import.meta.env.VITE_API_URL}/api/user/profile-image`,
         form,
         {
           headers: {
@@ -68,7 +68,7 @@ export default function Settings() {
   const handleProfileUpdate = async () => {
     try {
       const res = await axios.patch(
-        "http://localhost:5050/api/user/update-details",
+        `${import.meta.env.VITE_API_URL}/api/user/update-details`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

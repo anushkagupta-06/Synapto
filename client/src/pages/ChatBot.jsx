@@ -23,7 +23,7 @@ const ChatBot = () => {
 
     try {
       const token = localStorage.getItem("synapto_token");
-      const res = await fetch("http://localhost:5050/api/chat", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const ChatBot = () => {
   const handleClearChat = async () => {
     try {
       const token = localStorage.getItem("synapto_token");
-      await fetch("http://localhost:5050/api/chat", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -70,7 +70,7 @@ const ChatBot = () => {
     const fetchChatHistory = async () => {
       try {
         const token = localStorage.getItem("synapto_token");
-        const res = await fetch("http://localhost:5050/api/chat", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
