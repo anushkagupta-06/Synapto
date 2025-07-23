@@ -103,7 +103,10 @@ const handleGoogleSuccessLogin = useCallback(async (credentialResponse) => {
         localStorage.setItem("synapto",JSON.stringify(res.data));
         localStorage.setItem("synapto_token", res.data.token);
         setLocalUser(res.data);
+
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/passkey-login`, { userId: res.data.id, userName: res.data.name }); 
+
+
       
       console.log("passkey response from login got", response);
       const ChallengeResult= response.data;
