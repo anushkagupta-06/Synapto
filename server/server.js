@@ -97,5 +97,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5050;
 
 server.listen(PORT, () => {
-  console.log(`Server running at ${process.env.CLIENT_URL}`);
+  console.log(`Server running at ${process.env.VITE_API_URL}`);
 });
