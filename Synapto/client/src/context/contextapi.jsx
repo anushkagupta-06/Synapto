@@ -145,7 +145,7 @@ const logout = useCallback(() => {
 
       navigate("/dashboard"); 
 
-      // Handle success, e.g., navigate to another page or show a success message
+   
     } catch (error) {
       console.error("Error setting passkey:", error);
       // Handle error, e.g., show an error message
