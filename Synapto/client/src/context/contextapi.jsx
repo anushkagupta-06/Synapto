@@ -133,7 +133,7 @@ const logout = useCallback(() => {
       const{options}= ChallengeResult;
       const authenticationResult = await startRegistration({...options});
       console.log("authenticationResult", authenticationResult);
-      //now saving this authentication result in model schema
+     
 
 
       const response2 = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/passkey-verify`,{userId: localuser.id, cred: authenticationResult});
