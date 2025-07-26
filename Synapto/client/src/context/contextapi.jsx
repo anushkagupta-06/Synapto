@@ -117,7 +117,6 @@ const logout = useCallback(() => {
 }, [navigate]);
 
 
-//setting the passkey after registring(first time user)....
   const setPasskey = useCallback(async () => {
     try {
       // Call the backend API to set the passkey
