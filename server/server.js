@@ -27,8 +27,7 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  process.env.CLIENT_URL || "https://synapto-u7zn.vercel.app",
-  "http://localhost:5173", // keep for local dev
+  process.env.CLIENT_URL ||"*" || "https://synapto.vercel.app", // keep for local dev
 ];
 
 const io = new Server(server, {
