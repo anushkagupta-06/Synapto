@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Homepage.css";
 import Spline from "@splinetool/react-spline";
 import { useAuth } from "../context/contextapi";
+
 import {
   FaRobot,
   FaGithub,
@@ -100,15 +101,14 @@ const cardVariants = {
   },
 };
 
-// Animated section component - optimized for better scroll performance
 const AnimatedSection = ({ children, className, id, direction = "up" }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false, // Allow re-triggering for directional animations
+    triggerOnce: false, 
     threshold: 0.3,
     rootMargin: "-10px 0px",
   });
 
-  // Choose animation variant based on direction
+  
   const getAnimationVariant = () => {
     switch (direction) {
       case "left":
@@ -248,7 +248,7 @@ const HomePage = () => {
         >
           <Link to="/time-table" className="nav-link" >
                   < CalendarClock size={16} style={{ marginRight: "6px" }} />
-                  Time-table
+                  Schedule
                 </Link>
           {localuser ? (
             <>
@@ -260,7 +260,7 @@ const HomePage = () => {
               {localuser?.isAdmin && (
                 <Link to="/wtsp-alert" className="nav-link">
                   <BellRing size={16} style={{ marginRight: "6px" }} />
-                  Alert Centre
+                  Alert
                 </Link>
               )}
               
@@ -404,9 +404,10 @@ const HomePage = () => {
           transition={{ duration: 0.5 }}
         >
           <Spline scene="https://prod.spline.design/3WxrW7SgUd5J8a5o/scene.splinecode" />
+          <div className="bg-black text-white">12345678909876543</div>
         </motion.div>
       )}
-
+   
       {phase === "redirecting" && (
         <motion.div
           className="intro-loader"
@@ -430,7 +431,7 @@ const HomePage = () => {
               size={24}
               style={{ marginBottom: "-4px", marginRight: "8px" }}
             />
-            DRIVING TO HOME PAGE...
+            Loading Synapto
           </motion.h1>
         </motion.div>
       )}
