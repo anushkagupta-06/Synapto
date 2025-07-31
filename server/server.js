@@ -24,7 +24,7 @@ const server = http.createServer(app);
 const allowedOrigins = [
   'http://localhost:5173', // Vite dev
   'http://localhost:5050', // Next/CRA dev (if used)
-  'https://your-frontend.example.com' // production
+  'https://synapto.vercel.app' // production
 ];
 
 const corsOptions = {
