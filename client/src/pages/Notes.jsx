@@ -10,7 +10,7 @@ const pastelColors = [
   'bg-blue-200',
   'bg-red-400',
   'bg-orange-200',
-  'bg-cyan-200', 
+  'bg-cyan-200',
 ];
 
 const Notes = () => {
@@ -18,7 +18,7 @@ const Notes = () => {
   const [form, setForm] = useState({ title: '', content: '', color: pastelColors[0], _id: null });
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("synapto_token");
+  const token = localStorage.getItem('synapto_token');
 
   const fetchNotes = async () => {
     try {
@@ -53,21 +53,17 @@ const Notes = () => {
     }
   };
 
-  const handleEdit = (note) => {
-    setForm(note);
-  };
+  const handleEdit = (note) => setForm(note);
 
   const toggleLike = async (id) => {
     try {
       const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/notes/like/${id}`, null, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const updatedNotes = notes.map((n) =>
-        n._id === id ? { ...n, liked: res.data.liked } : n
-      );
+      const updatedNotes = notes.map((n) => (n._id === id ? { ...n, liked: res.data.liked } : n));
       setNotes(updatedNotes);
     } catch (err) {
-      console.error("Error toggling like:", err);
+      console.error('Error toggling like:', err);
     }
   };
 
@@ -87,9 +83,9 @@ const Notes = () => {
   }, []);
 
   return (
-    <div className="h-screen overflow-y-auto bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+    <div className="h-screen overflow-y-auto bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-gray-900/95 backdrop-blur-sm border-b border-gray-700 shadow-xl">
+      <div className="sticky top-0 z-10 bg-gray-950/90 backdrop-blur-sm border-b border-gray-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">
@@ -103,7 +99,7 @@ const Notes = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
         {/* Form */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 shadow-2xl">
+        <div className="bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-800 shadow-2xl">
           <div className="p-8">
             <h2 className="text-2xl font-semibold text-gray-100 mb-6 flex items-center gap-2">
               <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,14 +107,14 @@ const Notes = () => {
               </svg>
               {form._id ? 'Edit Note' : 'Create New Note'}
             </h2>
-            
+
             <form onSubmit={handleSave} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Title</label>
                 <input
                   type="text"
                   placeholder="Enter note title..."
-                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full p-4 rounded-xl bg-gray-800/70 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
                   required
@@ -130,20 +126,20 @@ const Notes = () => {
                 <textarea
                   placeholder="Write your note content here..."
                   rows={5}
-                  className="w-full p-4 rounded-xl bg-gray-700/50 border border-gray-600 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                  className="w-full p-4 rounded-xl bg-gray-800/70 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
                   value={form.content}
                   onChange={(e) => setForm({ ...form, content: e.target.value })}
                   required
                 />
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
                   <label className="text-sm font-medium text-gray-300">Color Theme:</label>
                   <select
                     value={form.color}
                     onChange={(e) => setForm({ ...form, color: e.target.value })}
-                    className="rounded-xl px-4 py-2 bg-gray-700/50 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className="rounded-xl px-4 py-2 bg-gray-800/70 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   >
                     {pastelColors.map((color, idx) => (
                       <option key={idx} value={color}>
@@ -151,6 +147,8 @@ const Notes = () => {
                       </option>
                     ))}
                   </select>
+                  {/* preview dot */}
+                  <span className={`h-3 w-3 rounded-full border border-white/40 ${form.color}`} />
                 </div>
 
                 <button
@@ -161,13 +159,19 @@ const Notes = () => {
                   {loading ? (
                     <div className="flex items-center gap-2">
                       <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
                       </svg>
                       Processing...
                     </div>
+                  ) : form._id ? (
+                    'Update Note'
                   ) : (
-                    form._id ? 'Update Note' : 'Create Note'
+                    'Create Note'
                   )}
                 </button>
               </div>
@@ -180,53 +184,71 @@ const Notes = () => {
           {notes.map((note, idx) => (
             <div
               key={note._id}
-              className={`rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${note.color || pastelColors[idx % pastelColors.length]} border border-gray-200/20`}
+              className="rounded-2xl overflow-hidden bg-gray-800/60 border border-gray-700 hover:border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300"
             >
+              {/* pastel accent strip */}
+              <div className={`h-1.5 w-full ${note.color || pastelColors[idx % pastelColors.length]}`} />
+
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-gray-800 line-clamp-2">{note.title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-100 line-clamp-2">{note.title}</h3>
                   <div className="flex-shrink-0 ml-2">
                     {note.liked ? (
                       <FaHeart
-                        className="text-red-500 cursor-pointer hover:scale-110 transition-transform duration-200"
+                        className="text-pink-400 cursor-pointer hover:scale-110 transition-transform duration-200"
                         onClick={() => toggleLike(note._id)}
                         size={20}
                       />
                     ) : (
                       <FaRegHeart
-                        className="text-gray-600 cursor-pointer hover:scale-110 hover:text-red-500 transition-all duration-200"
+                        className="text-gray-400 cursor-pointer hover:scale-110 hover:text-pink-400 transition-all duration-200"
                         onClick={() => toggleLike(note._id)}
                         size={20}
                       />
                     )}
                   </div>
                 </div>
-                
-                <p className="text-gray-700 whitespace-pre-line mb-4 line-clamp-4">{note.content}</p>
-                
-                <div className="border-t border-gray-400/20 pt-4">
-                  <div className="flex justify-between items-center text-sm text-gray-600">
-                    <span className="flex items-center gap-1">
+
+                <p className="text-gray-300 whitespace-pre-line mb-4 line-clamp-4">{note.content}</p>
+
+                <div className="border-t border-gray-700 pt-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="flex items-center gap-2 text-gray-400">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
                       </svg>
                       {new Date(note.updatedAt).toLocaleDateString()}
                     </span>
-                    
-                    <div className="flex items-center gap-3">
+
+                    <div className="flex items-center gap-4">
                       <button
                         onClick={() => handleEdit(note)}
-                        className="text-blue-700 hover:text-blue-800 font-medium hover:underline transition-colors duration-200"
+                        className="text-blue-400 hover:text-blue-300 font-medium hover:underline underline-offset-4 transition-colors duration-200"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(note._id)}
-                        className="text-red-700 hover:text-red-800 font-medium hover:underline transition-colors duration-200"
+                        className="text-red-400 hover:text-red-300 font-medium hover:underline underline-offset-4 transition-colors duration-200"
                       >
                         Delete
                       </button>
                     </div>
+                  </div>
+
+                  {/* color chip */}
+                  <div className="mt-3 flex items-center gap-2">
+                    <span className="text-xs text-gray-500">Accent</span>
+                    <span
+                      className={`h-3 w-3 rounded-full border border-white/40 ${
+                        note.color || pastelColors[idx % pastelColors.length]
+                      }`}
+                    />
                   </div>
                 </div>
               </div>
@@ -237,7 +259,12 @@ const Notes = () => {
         {notes.length === 0 && (
           <div className="text-center py-16">
             <svg className="mx-auto h-24 w-24 text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             <h3 className="text-2xl font-semibold text-gray-300 mb-2">No notes yet</h3>
             <p className="text-gray-400">Create your first note to get started!</p>
