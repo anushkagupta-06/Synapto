@@ -11,133 +11,148 @@ const Timetable = () => {
   }, []);
 
   const timeSlots = [
-    { id: 1, time: '09:00-10:00', start: 9, end: 10 },
-    { id: 2, time: '10:00-11:00', start: 10, end: 11 },
-    { id: 3, time: '11:00-12:00', start: 11, end: 12 },
-    { id: 4, time: '12:00-13:00', start: 12, end: 13 },
-    { id: 5, time: '14:00-15:00', start: 14, end: 15 },
-    { id: 6, time: '15:00-16:00', start: 15, end: 16 },
-    { id: 7, time: '16:00-17:00', start: 16, end: 17 },
-    { id: 8, time: '17:00-18:00', start: 17, end: 18 }
+    
+    { id: 1, time: '08:00-09:00', start: 8, end: 9},
+    { id: 2, time: '09:00-10:00', start: 9, end: 10 },
+    { id: 3, time: '10:00-11:00', start: 10, end: 11 },
+    { id: 4, time: '11:00-12:00', start: 11, end: 12 },
+    { id: 5, time: '12:00-13:00', start: 12, end: 13 },
+    { id: 6, time: '14:00-15:00', start: 14, end: 15 },
+    { id: 7, time: '15:00-16:00', start: 15, end: 16 },
+    { id: 8, time: '16:00-17:00', start: 16, end: 17 },
+    { id: 9, time: '17:00-18:00', start: 17, end: 18 }
   ];
 
   const timetableData = {
     E: {
-      Monday: [
+      "Monday": [
+        { "subject": "ECN13103(L)", "venue": "GS8", "type": "Lecture" },
+        { "subject": "ECN13101(L)", "venue": "FEW1", "type": "Lecture" },
         null,
-        { subject: 'ECN12101(L)', venue: 'SEW1', code: '[VK]', type: 'Lecture', teacher: 'F' },
-        { subject: 'ECN12101(L)', venue: 'SEW1', code: '[VK]', type: 'Lecture', teacher: 'F' },
-        { subject: 'MAN12105(L)', venue: 'SEW9', code: 'E1', type: 'Lecture' },
-        { subject: 'ECN12102(P)', venue: 'CYN12501(P)', code: 'F2', type: 'Practical', teacher: 'F1' },
-        { subject: 'HSN12600(L)', venue: 'GS3', code: 'JE', type: 'Lecture' },
-        { subject: 'ECN12401*(L)', venue: 'GS7', code: '[VB]', type: 'Lecture' },
+        null,
+        { "subject": "Lunch Break", "type": "Break" },
+        { "subject": "HSN13602(L)", "venue": "FEW1", "type": "Lecture" },
+        { "subject": "ECN13103(P)EC1, ECN13104(P)EC2, CSN13404(P)EC3", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "ECN13103(P)EC1, ECN13104(P)EC2, CSN13404(P)EC3", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "ECN13104(L)", "venue": "FC5", "type": "Lecture" },
         null
       ],
-      Tuesday: [
+      "Tuesday": [
         null,
-        { subject: 'HSN12600(L)', venue: 'GS8', code: 'E', type: 'Lecture' },
-        { subject: 'MAN12105(L)', venue: 'SEW9', code: 'JF1', type: 'Lecture' },
-        { subject: 'HSN12600(P)', venue: 'ECN12101(P)', code: 'F1', type: 'Practical', teacher: 'F2' },
-        { subject: 'MAN12105(L)', venue: 'FC5', code: 'JF', type: 'Lecture' },
-        { subject: 'ECN12401*(P)', type: 'Practical' },
-        { subject: 'CYN12501(L)', venue: 'NLH2', type: 'Lecture' },
-        null
-      ],
-      Wednesday: [
+        { "subject": "ECN13101(L)", "venue": "GS7", "type": "Lecture" },
+        { "subject": "ECN13102(L)", "venue": "GS7", "type": "Lecture" },
         null,
-        { subject: 'ECN12101(L)', venue: 'FE18', code: 'E', type: 'Lecture', teacher: '[VK]' },
-        { subject: 'ECN12101(L)', venue: 'FE18', code: 'JE', type: 'Lecture', teacher: '[VK]' },
-        { subject: 'ECN12102(P)', venue: 'ECN12101(P)', code: 'E2', type: 'Practical', teacher: 'F1' },
-        { subject: 'MAN12105(L)', venue: 'FEW1', code: 'JE', type: 'Lecture' },
-        { subject: 'HSN12600(P)', venue: 'FC5', code: 'JE1', type: 'Practical' },
-        { subject: 'ECN12401*(L)', venue: 'GS7', code: '[VB]', type: 'Lecture' },
-        null
-      ],
-      Thursday: [
-        null,
-        { subject: 'CYN12501(L)', venue: 'NLH2', type: 'Lecture' },
-        { subject: 'MAN12105(L)', venue: 'FEW1', code: 'JE', type: 'Lecture' },
-        { subject: 'HSN12600(P)', venue: 'ECN12101(P)', code: 'F2', type: 'Practical', teacher: 'E1' },
-        { subject: 'ECN12102(L)', venue: 'FC5', code: 'JE', type: 'Lecture', teacher: '[DP]' },
-        { subject: 'HSN12600(P)', venue: 'CYN12501(P)', code: 'E2', type: 'Practical', teacher: 'E1' },
-        { subject: 'IDN12600(L)', venue: 'NLH1', code: 'JE+', type: 'Lecture' },
-        null
-      ],
-      Friday: [
-        null,
-        { subject: 'CYN12501(P)', code: 'F2', type: 'Practical' },
-        { subject: 'ECN12101(P)', venue: 'ECN12102(P)', code: 'E2', type: 'Practical', teacher: 'E1' },
-        { subject: 'CYN12501(T)', venue: 'MAN12105(T)', code: 'E1 SEW1', type: 'Tutorial', teacher: 'E2 SEW10' },
-        { subject: 'MAN12105(L)', venue: 'FC5', code: 'JE', type: 'Lecture' },
-        { subject: 'ECN12102(L)', venue: 'FC5', code: 'JF', type: 'Lecture', teacher: '[SC]' },
+        { "subject": "Lunch Break", "type": "Break" },
+        { "subject": "HSN13602(L)", "venue": "FEW1", "type": "Lecture" },
+        { "subject": "ECN13104(P)EC1, ECN13103(P)EC2", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "ECN13104(P)EC1, ECN13103(P)EC2", "venue": "CCSF Lab (CSED)", "type": "Practical" },
         null,
         null
       ],
-      Saturday: [
-        null,
-        { subject: 'Extra Activity', type: 'Activity' },
+      "Wednesday": [
         null,
         null,
+        { "subject": "ECN13102(L)", "venue": "SEW10", "type": "Lecture" },
         null,
+        { "subject": "Lunch Break", "type": "Break" },
         null,
+        { "subject": "CSN13404(P)EC1, ECN13104(P)EC3, ECN13103(P)EC4", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "CSN13404(P)EC1, ECN13104(P)EC3, ECN13103(P)EC4", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "HSN13602(L)", "venue": "SEW1", "type": "Lecture" },
+        { "subject": "EEN13401(L)", "venue": "ECE", "type": "Lecture" }
+      ],
+      "Thursday": [
+        { "subject": "ECN13103(L)", "venue": "GS8", "type": "Lecture" },
         null,
-        null
-      ]
+        { "subject": "ECN13102(L)", "venue": "FN1", "type": "Lecture" },
+        null,
+        { "subject": "Lunch Break", "type": "Break" },
+        { "subject": "ECN13101(L)", "venue": "FN3", "type": "Lecture" },
+        { "subject": "CSN13404(P)EC2, ECN13103(P)EC3, ECN13104(P)EC4", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "CSN13404(P)EC2, ECN13103(P)EC3, ECN13104(P)EC4", "venue": "CCSF Lab (CSED)", "type": "Practical" },
+        { "subject": "EEN13401(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "ECN13102(L)", "venue": "SEW1", "type": "Lecture" }
+      ],
+      "Friday": [
+        { "subject": "ECN13103(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "CSN13404(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "EEN13401(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "ECN13104(L)", "venue": "SEW1", "type": "Lecture" },
+        { "subject": "Lunch Break", "type": "Break" },
+        { "subject": "ECN13102(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "L3 Lab (CSED)", "venue": "FN1", "type": "Practical" },
+        { "subject": "L3 Lab (CSED)", "venue": "FN1", "type": "Practical" },
+        { "subject": "HSN13602(L)", "venue": "FEW1", "type": "Lecture" },
+        { "subject": "ECN13101(L)", "venue": "FEW1", "type": "Lecture" }
+      ],
+      "Saturday": [ null, null, null, null, null, null, null, null, null, null ]
     },
     F: {
-      Monday: [
+     "Monday": [
         null,
-        { subject: 'ECN12101(L)', venue: 'SEW1', code: '[VK]', type: 'Lecture', teacher: 'F' },
-        { subject: 'ECN12101(L)', venue: 'SEW1', code: '[VK]', type: 'Lecture', teacher: 'F' },
-        { subject: 'MAN12105(L)', venue: 'GS3', code: 'JF', type: 'Lecture' },
-        { subject: 'CYN12501(P)', code: 'JE2', type: 'Practical' },
-        { subject: 'HSN12600(L)', venue: 'GS3', code: 'JE', type: 'Lecture' },
-        { subject: 'ECN12401*(L)', venue: 'GS7', code: '[VB]', type: 'Lecture' },
+        { "subject": "CSN13404(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "ECN13104(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "EEN13401(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "Lunch Break", "type": "Break" },
+        null,
+        null,
+        null,
+        { "subject": "ECN13101(L)", "venue": "FN1", "type": "Lecture" },
         null
       ],
-      Tuesday: [
+      "Tuesday": [
         null,
-        { subject: 'HSN12600(L)', venue: 'GS8', code: 'E', type: 'Lecture' },
-        { subject: 'CYN12501(T)', venue: 'FE18', code: 'JE2', type: 'Tutorial' },
-        { subject: 'HSN12600(P)', venue: 'ECN12101(P)', code: 'F1', type: 'Practical', teacher: 'F2' },
-        { subject: 'MAN12105(L)', venue: 'FC5', code: 'JF', type: 'Lecture' },
-        { subject: 'ECN12401*(P)', type: 'Practical' },
-        { subject: 'CYN12501(L)', venue: 'NLH2', type: 'Lecture' },
-        null
-      ],
-      Wednesday: [
+        { "subject": "ECN13104(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "CSN13404(L)", "venue": "FN1", "type": "Lecture" },
         null,
-        { subject: 'ECN12101(L)', venue: 'FE18', code: 'E', type: 'Lecture', teacher: '[VK]' },
-        { subject: 'MAN12105(L)', venue: 'FEW1', code: 'JF', type: 'Lecture' },
-        { subject: 'CYN12501(T)', venue: 'FEW1', code: 'F', type: 'Tutorial', teacher: '2' },
-        { subject: 'HSN12600(L)', venue: 'FC5', code: 'JF', type: 'Lecture' },
-        { subject: 'HSN12600(P)', venue: 'FC5', code: 'JE1', type: 'Practical' },
-        { subject: 'ECN12401*(L)', venue: 'GS7', code: '[VB]', type: 'Lecture' },
-        null
-      ],
-      Thursday: [
+        { "subject": "Lunch Break", "type": "Break" },
         null,
-        { subject: 'CYN12501(L)', venue: 'NLH2', type: 'Lecture' },
-        { subject: 'MAN12105(L)', venue: 'SEW10', code: 'JF2', type: 'Lecture' },
-        { subject: 'HSN12600(P)', venue: 'ECN12101(P)', code: 'F2', type: 'Practical', teacher: 'E1' },
-        { subject: 'ECN12102(L)', venue: 'FC5', code: 'JE', type: 'Lecture', teacher: '[DP]' },
-        { subject: 'HSN12600(L)', venue: 'FC5', code: 'JF', type: 'Lecture' },
-        { subject: 'IDN12600(L)', venue: 'NLH1', code: 'JE+', type: 'Lecture' },
-        null
-      ],
-      Friday: [
         null,
-        { subject: 'CYN12501(P)', code: 'F2', type: 'Practical' },
-        { subject: 'ECN12101(P)', venue: 'ECN12102(P)', code: 'E2', type: 'Practical', teacher: 'E1' },
-        { subject: 'IDN12600(L)', venue: 'NLH1', code: 'JE+', type: 'Lecture', teacher: 'F' },
-        { subject: 'MAN12105(L)', venue: 'FC5', code: 'JE', type: 'Lecture' },
-        { subject: 'ECN12102(L)', venue: 'FC5', code: 'JF', type: 'Lecture', teacher: '[SC]' },
+        null,
         null,
         null
       ],
-      Saturday: [
+      "Wednesday": [
+        { "subject": "ECN13103(L)", "venue": "FN1", "type": "Lecture" },
         null,
-        { subject: 'Extra Activity', type: 'Activity' },
+        null,
+        { "subject": "EEN13401(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "Lunch Break", "type": "Break" },
+        { "subject": "EEN13401(L)", "venue": "ECF", "type": "Lecture" },
+        null,
+        null,
+        null,
+        { "subject": "ECN13102(L), HSN13602(L), ECN13104(L)", "venue": "ECF/SEW1", "type": "Lecture" }
+      ],
+      "Thursday": [
+        null,
+        null,
+        null,
+        null,
+        { "subject": "Lunch Break", "type": "Break" },
+        null,
+        null,
+        null,
+        { "subject": "HSN13602(L)", "venue": "SEW10", "type": "Lecture" },
+        null
+      ],
+      "Friday": [
+        { "subject": "ECN13103(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "ECN13103(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "EEN13401(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "HSN13602(L)", "venue": "SEW10", "type": "Lecture" },
+        { "subject": "Lunch Break", "type": "Break" },
+        { "subject": "CSN13404(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "CSN13404(P)EC4", "venue": "FN1", "type": "Practical" },
+        { "subject": "CSN13404(P)EC4", "venue": "FN1", "type": "Practical" },
+        { "subject": "HSN13602(L)", "venue": "FN1", "type": "Lecture" },
+        { "subject": "ECN13101(L)", "venue": "FE18", "type": "Lecture" }
+      ],
+      "Saturday": [
+        null,
+        { "subject": "ECN13104(L)", "venue": "SEW10", "type": "Lecture" },
+        { "subject": "ECN13104(L)", "venue": "SEW10", "type": "Lecture" },
+        null,
         null,
         null,
         null,
@@ -206,7 +221,7 @@ const Timetable = () => {
   const currentClass = getCurrentClass();
   const upcomingClass = getUpcomingClass();
 
-  return (
+ return (
     <div className="h-screen overflow-y-auto bg-gradient-to-br from-gray-900 via-gray-800 to-black p-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -215,7 +230,7 @@ const Timetable = () => {
             Motilal Nehru National Institute of Technology Allahabad
           </h1>
           <h2 className="text-xl text-gray-300 text-center mb-4">
-            Electronics and Communication Engineering - Second Semester
+            Electronics and Communication Engineering - 3rd Semester
           </h2>
           <div className="flex justify-center items-center space-x-4">
             <div className="flex items-center space-x-2">
@@ -239,7 +254,7 @@ const Timetable = () => {
             <button
               onClick={() => setSelectedSection('E')}
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                selectedSection === 'E'
+                selectedSection === 'ECE'
                   ? 'bg-blue-600 text-white shadow-lg transform scale-105'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
@@ -249,7 +264,7 @@ const Timetable = () => {
             <button
               onClick={() => setSelectedSection('F')}
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                selectedSection === 'F'
+                selectedSection === 'ECF'
                   ? 'bg-blue-600 text-white shadow-lg transform scale-105'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
@@ -277,10 +292,11 @@ const Timetable = () => {
                     <Clock className="w-4 h-4 mr-2" />
                     {currentClass.time}
                   </div>
-                  {currentClass.code && (
+                  {/* FIX: Changed currentClass.code to currentClass.venue */}
+                  {currentClass.venue && (
                     <div className="flex items-center">
                       <MapPin className="w-4 h-4 mr-2" />
-                      {currentClass.code}
+                      {currentClass.venue}
                     </div>
                   )}
                   <div className="flex items-center">
@@ -312,10 +328,11 @@ const Timetable = () => {
                     <Clock className="w-4 h-4 mr-2" />
                     {upcomingClass.time}
                   </div>
-                  {upcomingClass.code && (
+                  {/* FIX: Changed upcomingClass.code to upcomingClass.venue */}
+                  {upcomingClass.venue && (
                     <div className="flex items-center">
                       <MapPin className="w-4 h-4 mr-2" />
-                      {upcomingClass.code}
+                      {upcomingClass.venue}
                     </div>
                   )}
                   <div className="flex items-center">
@@ -367,8 +384,9 @@ const Timetable = () => {
                               <div className="font-semibold mb-1">
                                 {subjectNames[classData.subject?.split('(')[0]] || classData.subject}
                               </div>
-                              {classData.code && (
-                                <div className="text-xs">{classData.code}</div>
+                              {/* FIX: Changed classData.code to classData.venue */}
+                              {classData.venue && (
+                                <div className="text-xs">{classData.venue}</div>
                               )}
                               <div className="text-xs">{classData.type}</div>
                             </div>
@@ -403,7 +421,7 @@ const Timetable = () => {
             </div>
             <div className="flex items-center">
               <div className="w-4 h-4 bg-orange-900 border border-orange-600 rounded mr-2"></div>
-              <span className="text-sm text-gray-300">Activity</span>
+              <span className="text-sm text-gray-300">Activity/Break</span>
             </div>
           </div>
         </div>
