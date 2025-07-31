@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Spline from "@splinetool/react-spline";
 import { Bot } from "lucide-react";
 
+
 const ChatBot = () => {
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
@@ -23,7 +24,7 @@ const ChatBot = () => {
 
     try {
       const token = localStorage.getItem("synapto_token");
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chatbot`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,6 +32,7 @@ const ChatBot = () => {
         },
         body: JSON.stringify({ message: userInput }),
       });
+      
 
       const data = await res.json();
 
@@ -54,7 +56,7 @@ const ChatBot = () => {
   const handleClearChat = async () => {
     try {
       const token = localStorage.getItem("synapto_token");
-      await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/chatbot`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -70,7 +72,7 @@ const ChatBot = () => {
     const fetchChatHistory = async () => {
       try {
         const token = localStorage.getItem("synapto_token");
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chatbot`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
