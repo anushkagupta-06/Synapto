@@ -209,6 +209,10 @@ html, body {
   .simple-spline-section {
     display: none;
   }
+  .spline-container.fullscreen {
+    display: none;
+  }
+
 }
 
 .homepage-root {
@@ -217,6 +221,7 @@ html, body {
 }
 
 .second-section {
+  margin-top: 35px;
   backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform, opacity;
@@ -235,6 +240,7 @@ html, body {
 .second-section h2 {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
+  margin-top: 10px;
   font-style: normal;
   margin-top: 1rem;
   font-size: 2.5rem;
@@ -395,11 +401,11 @@ html, body {
   }
   
   .navbar-links {
-    gap: 12px;
+    gap: 8px;
   }
   
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     padding: 4px 8px;
   }
   
@@ -806,3 +812,7 @@ html, body {
     height: 40px;
   }
 }
+
+
+
+
