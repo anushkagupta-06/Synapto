@@ -16,20 +16,35 @@ import { setupChatSocket } from './sockets/chatSocket.js';
 import userSettingsRoutes from './routes/userSettingsRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
 import deadlineRoutes from './routes/DeadlineRoutes.js';
-
-
-
-
-
 connectDB();
 
 const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  process.env.CLIENT_URL ||"*" || "https://synapto.vercel.app", // keep for local dev
+  'http://localhost:5173', // Vite dev
+  'http://localhost:5050', // Next/CRA dev (if used)
+  'https://synapto.vercel.app' // production
 ];
 
+const corsOptions = {
+  origin(origin, callback) {
+    // Allow server-to-server / curl (no Origin header)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+// Make sure preflight requests are accepted
+app.options('*', cors(corsOptions));
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
@@ -39,27 +54,27 @@ const io = new Server(server, {
 });
 
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+// }));
  
-app.options("*", cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+// app.options("*", cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+// }));
 
 app.use(express.json());
 
