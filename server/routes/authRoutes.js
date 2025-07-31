@@ -20,5 +20,4 @@ router.post('/passkey-verify-login', PasskeyVerifyLogin);
 router.post("/request-otp", requestOtpReset);
 router.post("/verify-otp", verifyOtp);
 router.post("/reset-password", resetPassword);
-
 export default router;

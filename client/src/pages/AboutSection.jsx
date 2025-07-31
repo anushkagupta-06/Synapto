@@ -156,9 +156,9 @@ const AboutSection = () => {
       <div className="about-container">
         {/* Section Header */}
         <AnimatedSection className="about-header">
-          <h2 className="about-section-heading">Meet the Developers</h2>
+          <h2 className="about-section-heading">Developer Section</h2>
           <p className="section-subtext">
-            Meet the brilliant minds behind AI Class Manager
+            Meet the minds behind Synapto
           </p>
         </AnimatedSection>
 
