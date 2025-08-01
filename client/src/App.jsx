@@ -24,12 +24,13 @@ import Bunk from "./pages/Bunk.jsx"
 import DeadlineManager from './pages/Deadline.jsx';
 import VideoSummarizer from "./pages/VideoSummarizer.jsx";
 import Timetable from "./pages/Timetable.jsx";
+import MobileHomepage from "./pages/MobileHomepage.jsx";
 
 function App() {
   return (
     <Routes>
       
-      {/* <Route path="/video-summary" element={<VideoSummarizer/>} /> */}
+      <Route path="/mobile-home" element={<MobileHomepage />} />
        <Route path="/time-table" element={<Timetable/>} />
       <Route path="/transcriber" element={<VideoSummarizer/>} />
        <Route path="/deadline" element={<DeadlineManager/>} />
@@ -42,7 +43,6 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoute />}>
-        
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/chatbot" element={<ChatBot />} />
         <Route path="/chat" element={<ChatPage />} />
@@ -57,7 +57,7 @@ function App() {
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Route>
-      <Route path="*" element={<Navigate to="/dashboard" />} />
+      <Route path="*" element={<Navigate to="/mobile-home" />} />
     </Routes>
   );
 }

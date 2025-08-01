@@ -1,19 +1,14 @@
 import ChatBot from "../models/ChatBot.js";
 import openRouter from "../utils/openrouter.js";
 
-
-
-// Send message and get smart GPT-based reply
 export const getBotResponse = async (req, res) => {
   try {
     const userId = req.user._id;
     const userMessage = req.body.message;
-
     // Reject very long messages early
     if (userMessage.length > 500) {
       return res.status(400).json({ message: "Message too long" });
     }
-
      let chat = await ChatBot.findOne({ user: userId });
       // add context awareness to remember latest chats 
       // This gives the bot the last 5 messages, so it understands context like follow-ups
@@ -21,7 +16,7 @@ export const getBotResponse = async (req, res) => {
         role: msg.sender === "user" ? "user" : "assistant",
         content: msg.text
       })) || [];
-      
+
       recentMessages.push({ role: "user", content: userMessage });
       
       const response = await openRouter.post('/chat/completions', {

@@ -128,3 +128,46 @@ button.close-poll {
   margin: 0.2rem 0;
   font-size: 0.95rem;
 }
+
+/* Buttons share base styles; add disabled state */
+.vote-btn {
+  min-width: 90px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform .12s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.vote-btn:active { transform: translateY(1px) scale(0.99); }
+
+.vote-btn--disabled,
+.vote-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(10%);
+}
+
+/* Feedback line below buttons */
+.vote-feedback {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(72, 85, 99, 0.18); /* subtle neutral bg */
+  color: #d1d5db;                      /* light gray text */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.vote-feedback__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #22c55e; /* green check bubble */
+  color: #0b1210;
+  font-size: 14px;
+  line-height: 1;
+}
